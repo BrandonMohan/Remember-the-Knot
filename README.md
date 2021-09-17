@@ -30,13 +30,13 @@ Remember the Knot is an application to have a digital copy of your to-do list th
    * Users can create an account, sign into an account, and log out of their account.
    * Users can click the demo button to sign into the site
    * Users cannot access the dashboard without signing in
-# Tasks
-* Create a new task button that will allow you to create a new task.
-* Checks which user is logged in and adds a task to the current list
-* Include a name field and completion date for new tasks
-* Manipulate the DOM to update the current list to include the new task without needing to refresh the page
-* Create an edit button to make changes to existing tasks
-* Create a delete button to remove existing tasks
+* Tasks
+    * Create a new task button that will allow you to create a new task.
+    * Checks which user is logged in and adds a task to the current list
+    * Include a name field and completion date for new tasks
+    * Manipulate the DOM to update the current list to include the new task without needing to refresh the page
+    * Create an edit button to make changes to existing tasks
+    * Create a delete button to remove existing tasks
 * List
     * Users can create a new list which will hold tasks
     * Users can click a create new list button to open up a page to submit new list
