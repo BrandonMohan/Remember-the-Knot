@@ -54,5 +54,4 @@ Remember the Knot is an application to have a digital copy of your to-do list th
 
 
  # Database Schema
- ![Remember the Knot (2)](https://user-images.githubusercontent.com/83061284/133859308-dde4e58a-9e50-41f7-b7a9-2f7092728bd3.png)
-
+ ![Remember the Knot (2)](https://user-images.githubusercontent.com/61606838/133911164-4ede00f1-c05b-498a-97e6-b4538fdd7dcf.png)
