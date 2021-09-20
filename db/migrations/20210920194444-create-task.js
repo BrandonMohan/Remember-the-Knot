@@ -17,6 +17,7 @@ module.exports = {
         references: { model: 'Lists' }
       },
       completed: {
+        defaultValue: false,
         type: Sequelize.BOOLEAN
       },
       expires: {
