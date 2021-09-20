@@ -1,2 +1,13 @@
-form(action="/login" method="post")
+extends layout.pug
 
+include utils.pug
+
+block content
+    +validationErrorSummary(errors)
+    form(action='/users/login' method='post')
+        input(type='hidden' name='_csrf' value=csrfToken)
+        label(for='emailAddress') Email Address
+        input(type='email' name='emailAddress')
+        label(for='password') Password
+        input(type='password' name='password')
+        button Login
