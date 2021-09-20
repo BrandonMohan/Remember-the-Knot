@@ -1,8 +1,19 @@
-doctype html
-html
-  head
-      block head
-        title="Express Starter App"
-        link(rel='stylesheet' href='/stylesheets/reset.css')
-  body
-  p signup page 
+extends layout.pug
+
+include utils.pug
+
+block content
+  +validationErrorSummary(errors)
+  form(action="/users/signup" method="post")
+    input(type='hidden' name="_csrf" value=csrfToken)
+    label(for='firstName') First Name
+    input(type='text' for='firstName' value=user.firstName)
+    label(for='lastName') Last Name
+    input(type='text' for='lastName' value=user.lastName)
+    label(for='emailAddress') Email Address
+    input(type='email' for='emailAddress' value=user.emailAddress)
+    label(for='password') Password
+    input(type='password' for='password')
+    label(for='confirmPassword') Confirm Password
+    input(type='password' for='confirmPassword')
+    button(type='submit') Submit
