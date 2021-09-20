@@ -8,16 +8,15 @@ const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const loginRouter = require('./routes/login');
+const { superSecret } = require('./config');
 const app = express();
 
-//testing 123
 // view engine setup
 app.set('view engine', 'pug');
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // set up session middleware
@@ -25,18 +24,19 @@ const store = new SequelizeStore({ db: sequelize });
 
 app.use(
   session({
-    secret: 'superSecret',
+    secret: superSecret,
     store,
     saveUninitialized: false,
     resave: false
   })
 );
+app.use(cookieParser(superSecret));
 
 // create Session table if it doesn't already exist
 store.sync();
 
-app.use('/', indexRouter);
 app.use('/users', usersRouter);
+// app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
