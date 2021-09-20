@@ -34,7 +34,7 @@ app.use(cookieParser(superSecret));
 
 // create Session table if it doesn't already exist
 store.sync();
-
+app.use('/', indexRouter)
 app.use('/users', usersRouter);
 // app.use('/users', usersRouter);
 
