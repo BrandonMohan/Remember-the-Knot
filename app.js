@@ -8,9 +8,9 @@ const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-
 const app = express();
 
+//testing 123
 // view engine setup
 app.set('view engine', 'pug');
 
@@ -28,7 +28,7 @@ app.use(
     secret: 'superSecret',
     store,
     saveUninitialized: false,
-    resave: false,
+    resave: false
   })
 );
 
