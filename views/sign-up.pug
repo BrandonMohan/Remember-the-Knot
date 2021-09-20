@@ -1,19 +1,16 @@
 extends layout.pug
 
-include utils.pug
-
 block content
-  +validationErrorSummary(errors)
-  form(action="/users/signup" method="post")
-    input(type='hidden' name="_csrf" value=csrfToken)
-    label(for='firstName') First Name
-    input(type='text' for='firstName' value=user.firstName)
-    label(for='lastName') Last Name
-    input(type='text' for='lastName' value=user.lastName)
-    label(for='emailAddress') Email Address
-    input(type='email' for='emailAddress' value=user.emailAddress)
-    label(for='password') Password
-    input(type='password' for='password')
-    label(for='confirmPassword') Confirm Password
-    input(type='password' for='confirmPassword')
-    button(type='submit') Submit
+    form(action="/users/signup" method="post")
+        input(type="hidden" name="_csrf" value=csrfToken)
+        label(for="fullName") FirstName:
+        input(type="text" name="firstName" value=user.firstName)
+        label(for="username") lastName:
+        input(type="text" name="lastName" value=user.lastName)
+        label(for="email") emailAddress:
+        input(type="email" name="emailAddress" value=user.emailAddress)
+        label(for="password") password:
+        input(type="text" name="password")
+        label(for="confirmPassword") password:
+        input(type="text" name="confirmPassword")
+        button Create User

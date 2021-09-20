@@ -72,8 +72,7 @@ router.get('/signup', csrfProtection, function (req, res) {
 
 router.post('/signup', csrfProtection, userValidators, asyncHandler(async (req, res) => {
   const { firstName, lastName, emailAddress, password } = req.body;
-  console.log(req.body);
-  const user = await db.User.build({
+  const user = db.User.build({
     firstName,
     lastName,
     emailAddress,
