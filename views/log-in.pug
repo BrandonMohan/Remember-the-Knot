@@ -8,7 +8,7 @@ block content
         +validationErrorSummary(errors)
         div(class="whiteSide")
             div(class="link")
-                a(href='/sign-up') Sign up for free
+                a(href='/signup') Sign up for free
             form(id = 'signUp' action='/login' method='post')
                 input(type='hidden' name='_csrf' value=csrfToken)
                 input(type='email' name='emailAddress' placeholder="email")
