@@ -19,13 +19,27 @@ router.get(
   })
 );
 
-router.get('/lists', asyncHandler (async(req, res) => {
-  const { userId } = req.session.auth;
-  const lists = await db.List.findAll({where: { userOwner: userId }})
-  if (lists) {
-    console.log(lists);
-    res.json({ lists })
-  }
-
-}));
+router.get(
+  '/lists',
+  asyncHandler(async (req, res) => {
+    const { userId } = req.session.auth;
+    const lists = await db.List.findAll({ where: { userOwner: userId } });
+    if (lists) {
+      console.log(lists);
+      res.json({ lists });
+    }
+  })
+);
+// return all tasks that belongs to list
+router.get(
+  '/lists/:id/tasks',
+  asyncHandler(async (req, res) => {
+    console.log('testing task hit');
+    const tasks = await db.Task.findAll({ where: { listId: req.params.id } });
+    if (tasks) {
+      console.log(tasks);
+      res.json({ tasks });
+    }
+  })
+);
 module.exports = router;
