@@ -3,11 +3,14 @@ extends layout.pug
 include utils.pug
 
 block content
-    +validationErrorSummary(errors)
-    form(action='/login' method='post')
-        input(type='hidden' name='_csrf' value=csrfToken)
-        label(for='emailAddress') Email Address
-        input(type='email' name='emailAddress')
-        label(for='password') Password
-        input(type='password' name='password')
-        button Login
+    div(class="page")
+        div(class="blueSide")
+        +validationErrorSummary(errors)
+        div(class="whiteSide")
+            div(class="link")
+                a(href='/sign-up') Sign up for free
+            form(id = 'signUp' action='/login' method='post')
+                input(type='hidden' name='_csrf' value=csrfToken)
+                input(type='email' name='emailAddress' placeholder="email")
+                input(type='password' name='password' placeholder="password")
+                button Log in
