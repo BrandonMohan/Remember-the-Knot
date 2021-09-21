@@ -1,7 +1,10 @@
 extends layout.pug
 
+include utils.pug
+
 block content
   div(class="signup")
+    +validationErrorSummary(errors)
     form(action="/signup" method="post")
         input(type="hidden" name="_csrf" value=csrfToken)
         label(for="fullName") FirstName:
