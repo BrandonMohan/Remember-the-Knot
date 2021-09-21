@@ -15,7 +15,17 @@ router.get(
     // return all list from userId
     const { userId } = req.session.auth;
 
-    res.render('index');
+    res.render('app');
   })
 );
+
+router.get('/lists', asyncHandler (async(req, res) => {
+  const { userId } = req.session.auth;
+  const lists = await db.List.findAll({where: { userOwner: userId }})
+  if (lists) {
+    console.log(lists);
+    res.json({ lists })
+  }
+
+}));
 module.exports = router;
