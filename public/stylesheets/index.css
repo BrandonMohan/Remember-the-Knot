@@ -60,3 +60,11 @@ body {
   color: white;
   font-family: sans-serif;
 }
+
+.card-body {
+  text-decoration: underline;
+}
+.list_container {
+  width: fit-content;
+  border: 2px solid black;
+}
