@@ -1,7 +1,7 @@
 extends layout.pug
 
 block content
-    form(action="/users/signup" method="post")
+    form(action="/signup" method="post")
         input(type="hidden" name="_csrf" value=csrfToken)
         label(for="fullName") FirstName:
         input(type="text" name="firstName" value=user.firstName)
