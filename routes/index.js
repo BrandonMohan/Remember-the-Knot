@@ -9,6 +9,7 @@ const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const db = require('../db/models');
 const { loginUser, logoutUser, requireAuth } = require('../auth');
+const { ResultWithContext } = require('express-validator/src/chain');
 
 /* GET home page. */
 router.get('/', requireAuth, function (req, res, next) {
@@ -67,6 +68,9 @@ const userValidators = [
 ];
 
 router.get('/signup', csrfProtection, function (req, res) {
+  if (req.session.auth) {
+   res.redirect('/app')
+  }
   const user = db.User.build();
   res.render('sign-up', {
     user,
