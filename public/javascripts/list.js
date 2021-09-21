@@ -10,15 +10,25 @@
 // }
 
 
-document.addEventListener("DOMContentLoaded", async() => {
+document.addEventListener("DOMContentLoaded", async () => {
+    const listcontainer = document.querySelector(".list_container")
     const result = await fetch("http://localhost:8080/app/lists")
-    console.log(result);
     const { lists } = await result.json();
-    console.log(lists);
-    const { listName } = lists
-    const test = document.createElement("div")
-        test.innerText = listName
-        document.body.appendChild(test)
-    const listDiv = document.querySelector("list_container")
+    let listname = [];
+    for (let list of lists) {
+        const { listName } = list
+        listname.push(listName)
+    }
+    console.log(listname)
+    const listHtml = listname.map(
+        (ele) => `
+          <div class="card-body">
+            <p class="card-text">${ele}</p>
+          </div>
+        </div>
+      `
+    );
+    listcontainer.innerHTML = listHtml.join("");
+
 
 })
