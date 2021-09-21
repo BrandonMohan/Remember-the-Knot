@@ -8,6 +8,7 @@ const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const appRouter = require('./routes/appRouter');
 const { superSecret } = require('./config');
 const { restoreUser } = require('./auth');
 const app = express();
@@ -29,13 +30,14 @@ app.use(
     resave: false
   })
 );
-app.use(restoreUser)
+app.use(restoreUser);
 app.use(cookieParser(superSecret));
 
 // create Session table if it doesn't already exist
 store.sync();
-app.use('/', indexRouter)
+app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/app', appRouter);
 // app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
