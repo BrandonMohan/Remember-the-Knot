@@ -11,7 +11,7 @@ const db = require('../db/models');
 const { loginUser, logoutUser, requireAuth } = require('../auth')
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', requireAuth, function (req, res, next) {
   res.render('index', { title: 'a/A Express Skeleton Home' });
 });
 
@@ -111,16 +111,16 @@ router.get('/login', csrfProtection, (req, res) => {
   });
 });
 
-router.post('/login', csrfProtection, loginValidators, asyncHandler(async(req, res) => {
+router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, res) => {
   const { emailAddress, password } = req.body;
 
   let errors = [];
   const validatorErrors = validationResult(req);
 
   if (validatorErrors.isEmpty()) {
-    const user = await db.User.findOne({ where: { emailAddress}});
+    const user = await db.User.findOne({ where: { emailAddress } });
 
-    if(user !== null) {
+    if (user !== null) {
       const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
 
       if (passwordMatch) {
@@ -129,7 +129,7 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async(req, r
       }
     }
     errors.push('Login failed for the provided email and password');
-  } else{
+  } else {
     errors = validatorErrors.array().map((error) => error.msg);
   }
 
