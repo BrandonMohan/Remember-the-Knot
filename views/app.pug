@@ -6,10 +6,12 @@ html
   body
     p testing
     form(action='/logout' method='post')
-      button(type="submit") logout
+      button(type="submit") Logout
 
 
   script(src="/javascripts/list.js" type="module" defer)
   div.list_container
+  div.button
+    input#newListButton(type="button" value="New List")
   div.task_container
     ul.task_list

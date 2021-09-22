@@ -25,11 +25,23 @@ router.get(
     const { userId } = req.session.auth;
     const lists = await db.List.findAll({ where: { userOwner: userId } });
     if (lists) {
-      console.log(lists);
       res.json({ lists });
     }
   })
 );
+
+router.post('/lists', asyncHandler(async (req, res) => {
+  const { listName } = req.body
+  const { userId } = req.session.auth;
+  const list = await db.List.create({
+    listName,
+    userOwner: userId
+  });
+  console.log(list.id)
+
+  res.json({ id: list.id, listName: list.listName });
+}))
+
 // return all tasks that belongs to list
 router.get(
   '/lists/:id/tasks',
@@ -42,4 +54,7 @@ router.get(
     }
   })
 );
+
+
+
 module.exports = router;
