@@ -1,0 +1,41 @@
+body {
+    background-color: #e4eef8;
+    margin: 0px;
+}
+#header h1 {
+    margin: 0px;
+}
+
+.nav_bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px;
+    align-items: center;
+    background-color: #0060bf;
+}
+
+.task_container {
+    margin-left: 220px;
+
+}
+
+#logout {
+    align-self: center;
+    position: fixed;
+    top: 9px;
+    left: 94%;
+}
+
+#newListButton {
+    display: flex;
+    justify-content: flex-start;
+
+}
+
+.task_container {
+    display: block;
+    box-shadow: 0 1px 0 rgba(255, 255, 255,);
+    height: 800px;
+    width: 528px;
+    background-color: white;
+}
