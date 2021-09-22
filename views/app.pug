@@ -1,8 +1,9 @@
 html
   head
       block head
-        title="Login Portal"
-        link(rel='stylesheet' href='/stylesheets/app.css')
+        title="Remember the Knot"
+        link(rel="shortcut icon" type="image/png" href="https://i.imgur.com/hgoSkWr.png")
+        link(rel='stylesheet' href='/stylesheets/index.css')
   body
     div.nav_bar
       H.nav_bar(id='app-header') Hello
@@ -10,10 +11,11 @@ html
       form(action='/logout' method='post')
         button#logout(type="submit") Logout
     div.nav_bar
-
-
   script(src="/javascripts/list.js" type="module" defer)
   div.list_container
+  div.button
+    input#newListButton(type="button" value="New List")
+    input#newListInput(type="hidden" placeholder="Enter list name")
   div.task_container
     ul.task_list
   div.button
