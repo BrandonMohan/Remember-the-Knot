@@ -11,7 +11,7 @@ const { loginUser, logoutUser, requireAuth } = require('../auth');
 
 router.get(
   '/',
-  asyncHandler(async (req, res) => {
+ requireAuth, asyncHandler(async (req, res) => {
     // return all list from userId
     const { userId } = req.session.auth;
 
