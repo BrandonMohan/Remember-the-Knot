@@ -15,9 +15,9 @@ const { ResultWithContext } = require('express-validator/src/chain');
 router.get('/', function (req, res, next) {
   if (req.session.auth) {
     res.redirect('/app')
-  }
+  } else {
   res.render('home-page', { title: 'Home Page' });
-});
+}});
 
 const userValidators = [
   check('firstName')

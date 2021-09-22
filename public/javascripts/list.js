@@ -53,24 +53,26 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   const newListButton = document.getElementById("newListButton")
+  const newListInput = document.getElementById("newListInput")
   newListButton.addEventListener('click', (e) => {
-    newListButton.setAttribute('type', 'text')
-    newListButton.removeAttribute('value')
-    newListButton.setAttribute('placeholder', 'Enter list name')
-    newListButton.addEventListener('focusout', (e) => {
+    newListButton.setAttribute('type', 'hidden')
+    newListInput.setAttribute('type', 'text')
+    newListInput.focus()
+    newListInput.addEventListener('focusout', (e) => {
+      newListInput.setAttribute('type', 'hidden')
+      newListInput.value = ''
       newListButton.setAttribute('type', 'button')
-      newListButton.setAttribute('value', 'New List')
     })
-    newListButton.addEventListener("keyup", async (e) => {
-      e.stopImmediatePropagation();
+    newListInput.addEventListener("keyup", async (e) => {
       if (e.key === 'Enter') {
+        e.stopImmediatePropagation();
         const result = await fetch('/app/lists', {
           method: 'POST',
           headers: { 'Content-type': 'application/json' },
-          body: JSON.stringify({ listName: `${newListButton.value}` })
+          body: JSON.stringify({ listName: `${newListInput.value}` })
         })
         if (result) {
-          newListButton.value = ''
+          newListInput.value = ''
           const { id, listName } = await result.json();
           let newList = document.createElement('div')
           newList.className = 'list_div'
