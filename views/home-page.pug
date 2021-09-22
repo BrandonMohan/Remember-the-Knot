@@ -8,13 +8,14 @@ block content
         div(class="nav")
             a() Demo
             a(href="http://localhost:8080/login") Log in
-            form(action='/signup' method='get')
+            a(href='/signup')
                 button(type="submit") Sign up for Free!
         div(class="middle")
             h1(class="middle") Remember The Knot!
             h2(id="h2") Welcome Back!
-            form(action='/login' method='get')
+            a(href='/login')
                 button(type="submit") Log in
+                    
     div(id="bottom_div")
         a(target="_blank" href="https://github.com/iethan-h/Remember-the-Knot.git") Our Project GitHub Page!
            
