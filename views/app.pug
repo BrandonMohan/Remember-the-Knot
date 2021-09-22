@@ -2,16 +2,19 @@ html
   head
       block head
         title="Login Portal"
-        link(rel='stylesheet' href='/stylesheets/index.css')
+        link(rel='stylesheet' href='/stylesheets/app.css')
   body
-    p testing
-    form(action='/logout' method='post')
-      button(type="submit" class='nav-bar') Logout
+    div.nav_bar
+      H.nav_bar(id='app-header') Hello
+      input(type='text' placeholder='Search...')
+      form(action='/logout' method='post')
+        button#logout(type="submit") Logout
+    div.nav_bar
 
 
   script(src="/javascripts/list.js" type="module" defer)
   div.list_container
-  div.button
-    input#newListButton(type="button" value="New List")
   div.task_container
     ul.task_list
+  div.button
+    input#newListButton(type="button" value="New List")
