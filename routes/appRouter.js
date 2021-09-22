@@ -11,7 +11,7 @@ const { loginUser, logoutUser, requireAuth } = require('../auth');
 
 router.get(
   '/',
- requireAuth, asyncHandler(async (req, res) => {
+  requireAuth, asyncHandler(async (req, res) => {
     // return all list from userId
     const { userId } = req.session.auth;
 
@@ -47,7 +47,9 @@ router.get(
   '/lists/:id/tasks',
   asyncHandler(async (req, res) => {
     console.log('testing task hit');
-    const tasks = await db.Task.findAll({ where: { listId: req.params.id } });
+    const tasks = await db.Task.findAll({
+      where: { listId: req.params.id }
+    })
     if (tasks) {
       console.log(tasks);
       res.json({ tasks });

@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', async () => {
   //GET LISTS
   const listcontainer = document.querySelector('.list_container');
@@ -18,6 +19,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // GET TASKS ONTO LISTS
   let firstList = Object.keys(listname)[0]; // default view is first list
+  const listHeader = document.getElementById('listTitle')
+  listHeader.innerHTML = `<h2 id=header  data-id="${firstList}"> ${Object.values(listname)[0]}<h2>`
   const getTasks = await fetch(`/app/lists/${firstList}/tasks`);
   const { tasks } = await getTasks.json();
   let taskObj = {};
@@ -27,7 +30,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     taskObj[id] = taskName;
   }
   for (let task in taskObj) {
-    taskHtml.push(`<li>${taskObj[task]}</li>`);
+    taskHtml.push(`<li data-id="${task}" class="task_li">${taskObj[task]}</li>`);
   }
   const taskList = document.querySelector('.task_list');
   taskList.innerHTML = taskHtml.join('');
@@ -37,8 +40,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   for (let div of listDiv) {
     div.addEventListener('click', async () => {
       const id = div.dataset.id
+      const newListTitle = div.innerText
       const getTasks = await fetch(`/app/lists/${id}/tasks`);
       const { tasks } = await getTasks.json();
+
       let taskObj = {};
       let taskHtml = [];
       for (let task of tasks) {
@@ -48,6 +53,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       for (let task in taskObj) {
         taskHtml.push(`<li>${taskObj[task]}</li>`);
       }
+      listHeader.innerHTML = `<h2 id=header data-id="${id}">${newListTitle}</h2>`
+      let headerId = header.dataset.id
+      console.log(headerId)
       taskList.innerHTML = taskHtml.join('');
     })
   }
@@ -69,16 +77,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         const result = await fetch('/app/lists', {
           method: 'POST',
           headers: { 'Content-type': 'application/json' },
-          body: JSON.stringify({ listName: `${newListInput.value}` })
+          body: JSON.stringify({ listName: `${newListInput.value} ` })
         })
         if (result) {
           newListInput.value = ''
           const { id, listName } = await result.json();
           let newList = document.createElement('div')
           newList.className = 'list_div'
-          newList.innerText = `${listName}`
+          newList.innerText = `${listName} `
           newList.addEventListener('click', async () => {
-            const getTasks = await fetch(`/app/lists/${id}/tasks`);
+            const getTasks = await fetch(`/ app / lists / ${id} /tasks`);
             const { tasks } = await getTasks.json();
             let taskObj = {};
             let taskHtml = [];
@@ -96,6 +104,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     })
   })
+
+
 
 
 });

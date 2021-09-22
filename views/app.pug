@@ -5,15 +5,19 @@ html
         link(rel="shortcut icon" type="image/png" href="https://i.imgur.com/hgoSkWr.png")
         link(rel='stylesheet' href='/stylesheets/index.css')
   body
-    p testing
     form(action='/logout' method='post')
       button(type="submit" class='nav-bar') Logout
 
 
   script(src="/javascripts/list.js" type="module" defer)
   div.list_container
-  div.button
+  div.listButtons
     input#newListButton(type="button" value="New List")
     input#newListInput(type="hidden" placeholder="Enter list name")
   div.task_container
+    div#listTitle 
     ul.task_list
+    div.taskButtons
+     input#newTaskButton(type="button" value="Add Task")
+     input#newTaskInput(type="hidden" placeholder="Enter task name")
+
