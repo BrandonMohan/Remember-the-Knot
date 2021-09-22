@@ -73,8 +73,21 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log(id)
         let newList = document.createElement('div')
         newList.className = 'list_div'
-        newList.dataset.id = `${id}`
         newList.innerText = `${listName}`
+        newList.addEventListener('click', async () => {
+          const getTasks = await fetch(`/app/lists/${id}/tasks`);
+          const { tasks } = await getTasks.json();
+          let taskObj = {};
+          let taskHtml = [];
+          for (let task of tasks) {
+            const { taskName, id } = task;
+            taskObj[id] = taskName;
+          }
+          for (let task in taskObj) {
+            taskHtml.push(`<li>${taskObj[task]}</li>`);
+          }
+          taskList.innerHTML = taskHtml.join('');
+        })
         listcontainer.appendChild(newList)
 
       }
