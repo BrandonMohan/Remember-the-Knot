@@ -40,19 +40,20 @@ body {
   text-align: center;
   background-color: rgba(211, 234, 250, 0.993);
 }
-#signUp {
+
+#logIn {
   height: 25%;
   width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-#signUp > input {
+#logIn > input {
   height: 10%;
   width: 100%;
   margin-bottom: 10px;
 }
-#signUp > button {
+#logIn > button {
   height: 10%;
   width: 100%;
   margin-bottom: 10px;
