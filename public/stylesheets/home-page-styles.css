@@ -27,4 +27,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+
+.nav {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    justify-content: space-between;
 }

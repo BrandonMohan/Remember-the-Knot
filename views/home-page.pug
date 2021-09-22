@@ -4,10 +4,17 @@ include utils.pug
 
 block content
     div(class="container")
-        div(id="top_div")
-            a(class="nav") Demo
-            a(class="nav" href="http://localhost:8080/login") Log in
+    div(id="top_div")
+        div(class="nav")
+            a() Demo
+            a(href="http://localhost:8080/login") Log in
             form(action='/signup' method='get')
-              button(type="submit") Sign up for Free!
-        div(id="bottom_div")
+                button(type="submit") Sign up for Free!
+        div(class="middle")
+            h1(class="middle") Remember The Knot!
+            h2(id="h2") Welcome Back!
+            form(action='/login' method='get')
+                button(type="submit") Log in
+    div(id="bottom_div")
+        a(target="_blank" href="https://github.com/iethan-h/Remember-the-Knot.git") Our Project GitHub Page!
            
