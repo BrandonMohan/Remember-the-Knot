@@ -85,3 +85,23 @@ body {
 .list_div {
   border-bottom: 0.5px solid black;
 }
+
+/* Hidden Edit forms*/
+.hidden {
+  display: none;
+}
+
+.show {
+ display: inline-flex;
+
+}
+
+#editListDiv {
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  background-color: #e4eef8;
+  border: black solid 1px;
+  padding: 10px;
+}
+

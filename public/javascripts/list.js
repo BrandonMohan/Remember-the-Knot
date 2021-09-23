@@ -1,23 +1,40 @@
 
 document.addEventListener('DOMContentLoaded', async () => {
+  let lastClickedListId;
 
   const fetchList = async () => {
-    const reply = await fetch('/app/lists');
-    const { lists } = await reply.json();
+    const result = await fetch('/app/lists');
+    const { lists } = await result.json();
     return lists
   };
+  const fetchPutList = async (listId, listName) => {
+    const result = await fetch(`/app/lists/${listId}/edit`, {
+      method: 'PUT',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({ listName })
+    })
+    return result
+  }
   const fetchTasks = async (listId) => {
-    const reply = await fetch(`/app/lists/${listId}/tasks`)
-    const { tasks } = await reply.json()
+    const result = await fetch(`/app/lists/${listId}/tasks`)
+    const { tasks } = await result.json()
     return tasks
   };
+
+
+  const renderTitle = (title) => {
+    const listTitle = document.querySelector("#titleContainer")
+    listTitle.innerHTML = `<h2>${title} List</h2>`
+    editListNameEventHandler(title);
+  }
+
   const renderList = (lists) => {
     const listcontainer = document.querySelector('.list_container');
     let listHtml = [];
     for (let list of lists) {
       const { id, listName } = list
       listHtml.push(
-        `<div data-listId="${id}" class="list_div">${listName}</div>`
+        `<div data-listId="${id}" class="list_div list${id}"><button id=${id} class='btnDelete list${id}'>x</button>${listName}</div>`
       );
     }
     return listcontainer.innerHTML = listHtml.join('');
@@ -35,36 +52,41 @@ document.addEventListener('DOMContentLoaded', async () => {
   };
   const addList = async (listName) => {
     const listcontainer = document.querySelector('.list_container');
-    const res = await fetch('/app/lists', {
+    const result = await fetch('/app/lists', {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify({ listName })
     })
-    return await res.json();
+    return await result.json();
   }
   const addTask = async (listId, taskName) => {
-    const res = await fetch(`/app/lists/${listId}/tasks`, {
+    const result = await fetch(`/app/lists/${listId}/tasks`, {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify({ taskName })
     })
-    return await res.json()
+    return await result.json()
   };
+  const deleteList = async (id) => {
+    const result = await fetch(`/app/lists/${id}`, {
+      method: 'DELETE'
+    })
+    return result
+  }
   const addTaskEventHandler = () => {
-
     const taskList = document.querySelector(".task_list")
-    newTaskButton.addEventListener('click', (e) => {
+    newTaskButton.addEventListener('click', (event) => {
       newTaskButton.setAttribute('type', 'hidden')
       newTaskInput.setAttribute('type', 'text')
       newTaskInput.focus()
-      newTaskInput.addEventListener('focusout', (e) => {
+      newTaskInput.addEventListener('focusout', (event) => {
         newTaskInput.setAttribute('type', 'hidden')
         newTaskInput.value = ''
         newTaskButton.setAttribute('type', 'button')
       })
-      newTaskInput.addEventListener("keyup", async (e) => {
-        e.stopImmediatePropagation()
-        if (e.key === 'Enter') {
+      newTaskInput.addEventListener("keyup", async (event) => {
+        event.stopImmediatePropagation()
+        if (event.key === 'Enter') {
           const task = await addTask(lastClickedListId, newTaskInput.value)
           if (task) {
             newTaskInput.value = ''
@@ -81,25 +103,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     const listcontainer = document.querySelector('.list_container');
     const newListButton = document.getElementById("newListButton")
     const newListInput = document.getElementById("newListInput")
-    newListButton.addEventListener('click', (e) => {
+    newListButton.addEventListener('click', (event) => {
       newListButton.setAttribute('type', 'hidden')
       newListInput.setAttribute('type', 'text')
       newListInput.focus()
-      newListInput.addEventListener('focusout', (e) => {
+      newListInput.addEventListener('focusout', (event) => {
         newListInput.setAttribute('type', 'hidden')
         newListInput.value = ''
         newListButton.setAttribute('type', 'button')
       })
-      newListInput.addEventListener("keyup", async (e) => {
-        if (e.key === 'Enter') {
-          e.stopImmediatePropagation();
-          const res = await addList(newListInput.value)
-          if (res) {
+      newListInput.addEventListener("keyup", async (event) => {
+        if (event.key === 'Enter') {
+          event.stopImmediatePropagation();
+          const result = await addList(newListInput.value)
+          if (result) {
             newListInput.value = ''
-            const { id, listName } = res
+            const { id, listName } = result
             let newList = document.createElement('div')
-            newList.className = 'list_div'
-            newList.innerText = `${listName} `
+            newList.innerHTML = `<div data-listId="${id}" class="list_div list${id}"><button id=${id} class='btnDelete list${id}'>x</button>${listName}</div>`
             newList.addEventListener('click', async () => {
               renderTasks([])
             })
@@ -113,29 +134,83 @@ document.addEventListener('DOMContentLoaded', async () => {
     const listDiv = document.querySelector(".list_container")
     listDiv.addEventListener('click', async (event) => {
       const listId = event.target.dataset.listid;
+      const listName = event.target.innerText.slice(1)
       if (listId) {
+        renderTitle(listName)
         const tasks = await fetchTasks(listId)
         renderTasks(tasks)
         lastClickedListId = Number(listId);
       }
     });
   }
-
-
-  const lists = await fetchList();
-  renderList(lists);
-
-  let lastClickedListId;
-
-  if (lists[0].id) {
-    const tasks = await fetchTasks(lists[0].id);
-    renderTasks(tasks);
-    lastClickedListId = lists[0].id;
+  const deleteListEventHandler = async () => {
+    const listDiv = document.querySelector('.list_container')
+    listDiv.addEventListener('click', async (event) => {
+      const target = event.target.type
+      const listId = event.target.id
+      if (target === 'submit') {
+        const result = await deleteList(listId)
+        if (result) {
+          const listDiv = document.querySelector(`div.list${listId}`)
+          listDiv.remove()
+          defaultView()
+        }
+      }
+    })
   }
 
+  const editListNameEventHandler = async () => {
+    const editTitleButton = document.querySelector('#titleListEdit')
+    const editListDiv = document.querySelector('#editListDiv')
+    const editListInput = document.querySelector('#editListName')
+    const editListSubmit = document.querySelector('#submitEditListName')
+    const editListCancel = document.querySelector('#cancelEditListName')
+    editTitleButton.addEventListener('click', (event) => {
+      editListDiv.setAttribute('class', 'show')
+      editListInput.setAttribute('class', 'show')
+      editListSubmit.setAttribute('class', 'show')
+      editListCancel.setAttribute('class', 'show')
+    })
+    editListCancel.addEventListener('click', (event) => {
+      editListDiv.setAttribute('class', 'hidden')
+      editListInput.setAttribute('value', '')
+      editListInput.setAttribute('class', 'hidden')
+      editListSubmit.setAttribute('class', 'hidden')
+      editListCancel.setAttribute('class', 'hidden')
+    })
+    editListSubmit.addEventListener('click', async (event) => {
+      if (editListInput.value) {
+        const result = await fetchPutList(lastClickedListId, editListInput.value)
+        if (result) {
+          const currentListDiv = document.querySelector(`.list${lastClickedListId}`);
+          editListDiv.setAttribute('class', 'hidden');
+          editListInput.setAttribute('class', 'hidden');
+          editListSubmit.setAttribute('class', 'hidden');
+          editListCancel.setAttribute('class', 'hidden');
+          renderTitle(editListInput.value)
+          currentListDiv.innerHTML = `<div data-listId="${lastClickedListId}" class="list_div list${lastClickedListId}"><button id=${lastClickedListId} class='btnDelete list${lastClickedListId}'>x</button>${editListInput.value}</div>`
+          editListInput.setAttribute('value', '');
+        }
+      }
+    })
+  }
+
+  const defaultView = async () => {
+    const lists = await fetchList();
+    renderList(lists);
+    if (lists[0].id) {
+      const tasks = await fetchTasks(lists[0].id);
+      renderTitle(lists[0].listName)
+      renderTasks(tasks);
+      lastClickedListId = lists[0].id;
+    }
+  }
+  defaultView()
   addListEventHandler();
   addTaskEventHandler();
   fetchListEventHandler();
+  deleteListEventHandler();
+
 
 
 

@@ -11,7 +11,11 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Task.associate = function (models) {
-    Task.belongsTo(models.List, { foreignKey: 'listId' });
+    Task.belongsTo(models.List, {
+      foreignKey: 'listId',
+      onDelete: 'cascade',
+      hook: true
+    });
   };
   return Task;
 };
