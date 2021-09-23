@@ -53,10 +53,38 @@ document.addEventListener('DOMContentLoaded', async () => {
       for (let task in taskObj) {
         taskHtml.push(`<li>${taskObj[task]}</li>`);
       }
-      listHeader.innerHTML = `<h2 id=header data-id="${id}">${newListTitle}</h2>`
-      let headerId = header.dataset.id
-      console.log(headerId)
       taskList.innerHTML = taskHtml.join('');
+      listHeader.innerHTML = `<h2 id=header data-id="${id}">${newListTitle}</h2>`
+      console.log(id)
+
+      newTaskButton.addEventListener('click', (e) => {
+        newTaskButton.setAttribute('type', 'hidden')
+        newTaskInput.setAttribute('type', 'text')
+        newTaskInput.focus()
+        newTaskInput.addEventListener('focusout', (e) => {
+          newTaskInput.setAttribute('type', 'hidden')
+          newTaskInput.value = ''
+          newTaskButton.setAttribute('type', 'button')
+        })
+        newTaskInput.addEventListener("keyup", async (e) => {
+          console.log(id)
+          if (e.key === 'Enter') {
+            const result = await fetch(`/app/lists/${id}/tasks`, {
+              method: 'POST',
+              headers: { 'Content-type': 'application/json' },
+              body: JSON.stringify({ taskName: `${newTaskInput.value}` })
+            })
+            if (result) {
+              newTaskInput.value = ''
+              const { id, taskName } = await result.json();
+              let newElement = document.createElement('li')
+              newElement.innerText = `${taskName} `
+              taskList.appendChild(newElement)
+
+            }
+          }
+        })
+      })
     })
   }
 
@@ -104,6 +132,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     })
   })
+
+
+
 
 
 
