@@ -104,10 +104,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             newListInput.value = ''
             const { id, listName } = res
             let newList = document.createElement('div')
-            newList.className = 'list_div'
-            newList.innerText = `${listName} `
-            newList.id = id
-            newList.dataset.listid = id
+            newList.innerHTML = `<div data-listId="${id}" class="list_div list${id}"><button id=${id} class='btnDelete list${id}'>x</button>${listName}</div>`
+            // newList.className = 'list_div'
+            // newList.innerText = `${listName} `
+            // newList.id = id
+            // newList.dataset.listid = id
             newList.addEventListener('click', async () => {
               renderTasks([])
             })
@@ -137,14 +138,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       console.log(target)
       if (target === 'submit') {
         const result = deleteList(listId)
-        if (result === 200) {
+        if (result) {
           const listDiv = document.querySelector(`div.list${listId}`)
           listDiv.remove()
         }
       }
     })
-
-
   }
 
 

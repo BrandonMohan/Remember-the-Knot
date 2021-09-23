@@ -12,7 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     List.belongsTo(models.User, { foreignKey: 'userOwner' });
     List.hasMany(models.Task, {
       foreignKey: 'listId',
-      onDelete: 'cascade'
+      onDelete: 'cascade',
+      hook: true
     });
   };
   return List;

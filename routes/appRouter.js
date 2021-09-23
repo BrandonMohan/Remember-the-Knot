@@ -42,12 +42,19 @@ router.post('/lists', asyncHandler(async (req, res) => {
 }))
 
 router.delete('/lists/:id', asyncHandler(async (req, res) => {
-  const id = req.params.id
-  const deletion = await db.List.destroy({
-    where: { id }
-  })
-  console.log(deletion)
-  res.sendStatus(200)
+  try {
+    const id = req.params.id
+    const taskDeletion = await db.Task.destroy({
+      where: { listId: id }
+    })
+    const listDeletion = await db.List.destroy({
+      where: { id }
+    })
+    res.send(200)
+  }
+  catch (err) {
+    console.log(err)
+  }
 }))
 
 // return all tasks that belongs to list

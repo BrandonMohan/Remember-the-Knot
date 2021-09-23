@@ -13,7 +13,8 @@ module.exports = (sequelize, DataTypes) => {
   Task.associate = function (models) {
     Task.belongsTo(models.List, {
       foreignKey: 'listId',
-      onDelete: 'cascade'
+      onDelete: 'cascade',
+      hook: true
     });
   };
   return Task;
