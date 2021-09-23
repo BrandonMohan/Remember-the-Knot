@@ -11,7 +11,7 @@ const { loginUser, logoutUser, requireAuth } = require('../auth');
 
 router.get(
   '/',
- requireAuth, asyncHandler(async (req, res) => {
+  requireAuth, asyncHandler(async (req, res) => {
     // return all list from userId
     const { userId } = req.session.auth;
 
@@ -37,7 +37,6 @@ router.post('/lists', asyncHandler(async (req, res) => {
     listName,
     userOwner: userId
   });
-  console.log(list.id)
 
   res.json({ id: list.id, listName: list.listName });
 }))
@@ -46,14 +45,29 @@ router.post('/lists', asyncHandler(async (req, res) => {
 router.get(
   '/lists/:id/tasks',
   asyncHandler(async (req, res) => {
-    console.log('testing task hit');
-    const tasks = await db.Task.findAll({ where: { listId: req.params.id } });
+    const tasks = await db.Task.findAll({
+      where: { listId: req.params.id }
+    })
     if (tasks) {
-      console.log(tasks);
       res.json({ tasks });
     }
   })
 );
+
+router.post('/lists/:id/tasks', asyncHandler(async (req, res) => {
+  const { taskName } = req.body
+  const listId = req.params.id
+  console.log(listId)
+  console.log(taskName)
+  const task = await db.Task.create({
+    taskName,
+    listId,
+    completed: false
+  })
+  if (task) {
+    res.json({ id: task.id, taskName: task.taskName });
+  }
+}))
 
 
 module.exports = router;
