@@ -9,15 +9,12 @@ block content
     +validationErrorSummary(errors)
     div(class="whiteSide")
       form(id="form" action="/signup" method="post")
-            input(type="hidden" name="_csrf" value=csrfToken)
-            label(for="fullName") Enter your first name:
-            input(type="text" name="firstName" value=user.firstName)
-            label(for="username") Enter your last name:
-            input(type="text" name="lastName" value=user.lastName)
-            label(for="email") Enter your email:
-            input(type="email" name="emailAddress" value=user.emailAddress)
-            label(for="password") Enter a password:
+            h1 Make an account!
+            input(type="hidden" name="_csrf" value=csrfToken)           
+            input(type="text" name="firstName" value=user.firstName placeholder="First name")            
+            input(type="text" name="lastName" value=user.lastName placeholder="Last Name")          
+            input(type="email" name="emailAddress" value=user.emailAddress placeholder="email")
             input(type="password" name="password" placeholder="Password")
-            
-            input(type="password" name="confirmPassword")
+            input(type="password" name="confirmPassword" placeholder="Confirm Password")
+            div(class="button")
             button Create 
