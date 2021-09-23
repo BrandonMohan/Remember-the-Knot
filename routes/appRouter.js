@@ -41,6 +41,15 @@ router.post('/lists', asyncHandler(async (req, res) => {
   res.json({ id: list.id, listName: list.listName });
 }))
 
+router.delete('/lists/:id', asyncHandler(async (req, res) => {
+  const id = req.params.id
+  const deletion = await db.List.destroy({
+    where: { id }
+  })
+  console.log(deletion)
+  res.sendStatus(200)
+}))
+
 // return all tasks that belongs to list
 router.get(
   '/lists/:id/tasks',
@@ -68,6 +77,8 @@ router.post('/lists/:id/tasks', asyncHandler(async (req, res) => {
     res.json({ id: task.id, taskName: task.taskName });
   }
 }))
+
+
 
 
 module.exports = router;

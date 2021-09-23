@@ -2,22 +2,23 @@
 document.addEventListener('DOMContentLoaded', async () => {
 
   const fetchList = async () => {
-    const reply = await fetch('/app/lists');
-    const { lists } = await reply.json();
+    const result = await fetch('/app/lists');
+    const { lists } = await result.json();
     return lists
   };
   const fetchTasks = async (listId) => {
-    const reply = await fetch(`/app/lists/${listId}/tasks`)
-    const { tasks } = await reply.json()
+    const result = await fetch(`/app/lists/${listId}/tasks`)
+    const { tasks } = await result.json()
     return tasks
   };
+
   const renderList = (lists) => {
     const listcontainer = document.querySelector('.list_container');
     let listHtml = [];
     for (let list of lists) {
       const { id, listName } = list
       listHtml.push(
-        `<div data-listId="${id}" class="list_div">${listName}</div>`
+        `<div data-listId="${id}" class="list_div list${id}"><button id=${id} class='btnDelete list${id}'>x</button>${listName}</div>`
       );
     }
     return listcontainer.innerHTML = listHtml.join('');
@@ -50,8 +51,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     })
     return await res.json()
   };
+  const deleteList = async (id) => {
+    const result = await fetch(`/app/lists/${id}`, {
+      method: 'DELETE'
+    })
+    return result
+  }
   const addTaskEventHandler = () => {
-
     const taskList = document.querySelector(".task_list")
     newTaskButton.addEventListener('click', (e) => {
       newTaskButton.setAttribute('type', 'hidden')
@@ -100,6 +106,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             let newList = document.createElement('div')
             newList.className = 'list_div'
             newList.innerText = `${listName} `
+            newList.id = id
+            newList.dataset.listid = id
             newList.addEventListener('click', async () => {
               renderTasks([])
             })
@@ -120,6 +128,24 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     });
   }
+  const deleteListEventHandler = async () => {
+    const listDiv = document.querySelector('.list_container')
+    listDiv.addEventListener('click', async (event) => {
+      const target = event.target.type
+      const listId = event.target.id
+      console.log(listId)
+      console.log(target)
+      if (target === 'submit') {
+        const result = deleteList(listId)
+        if (result === 200) {
+          const listDiv = document.querySelector(`div.list${listId}`)
+          listDiv.remove()
+        }
+      }
+    })
+
+
+  }
 
 
   const lists = await fetchList();
@@ -136,6 +162,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   addListEventHandler();
   addTaskEventHandler();
   fetchListEventHandler();
+  deleteListEventHandler();
 
 
 
