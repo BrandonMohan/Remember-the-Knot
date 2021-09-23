@@ -4,12 +4,14 @@ include utils.pug
 
 block content
     div(class="page")
+        img(src='/stylesheets/knotlogo.png')
+        p “C’est banana! Hahaha! Miam Miam! Huh?” – Minions
         div(class="blueSide")
         +validationErrorSummary(errors)
         div(class="whiteSide")
             div(class="link")
                 a(href='/signup') Sign up for free
-            form(id = 'signUp' action='/login' method='post')
+            form(id = 'logIn' action='/login' method='post')
                 input(type='hidden' name='_csrf' value=csrfToken)
                 input(type='email' name='emailAddress' placeholder="email")
                 input(type='password' name='password' placeholder="password")

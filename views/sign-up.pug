@@ -1,20 +1,22 @@
-
-extends sign-up-layout.pug 
+extends layout.pug
 
 include utils.pug
 
 block content
-  div(class="page")
-    div(class="blueSide")
-    +validationErrorSummary(errors)
-    div(class="whiteSide")
-      form(id="form" action="/signup" method="post")
-            h1 Make an account!
-            input(type="hidden" name="_csrf" value=csrfToken)           
-            input(type="text" name="firstName" value=user.firstName placeholder="First name")            
-            input(type="text" name="lastName" value=user.lastName placeholder="Last Name")          
-            input(type="email" name="emailAddress" value=user.emailAddress placeholder="email")
-            input(type="password" name="password" placeholder="Password")
-            input(type="password" name="confirmPassword" placeholder="Confirm Password")
-            div(class="button")
-            button Create 
+    div(class="page")
+        div(class="blueSide")
+        +validationErrorSummary(errors)
+        div(class="whiteSide")
+          form(id = 'logIn' action="/signup" method="post")
+              input(type="hidden" name="_csrf" value=csrfToken)
+              label(for="fullName") First name:
+              input(type="text" name="firstName" value=user.firstName)
+              label(for="username") Last name:
+              input(type="text" name="lastName" value=user.lastName)
+              label(for="email") Email Address:
+              input(type="email" name="emailAddress" value=user.emailAddress)
+              label(for="password") password:
+              input(type="password" name="Password")
+              label(for="confirmPassword") Confirm your password:
+              input(type="password" name="confirmPassword")
+              button(class = 'logButton') Create User

@@ -1,77 +1,104 @@
 body {
-    padding: 0px;
-    margin: 0px;
-    width: 100%;
-    height: 100vh;
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  height: 100vh;
 }
-
 .page {
-    height: 100vh;
-    display: flex;
-    justify-content: space-between;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
 }
-
 .blueSide {
-    background-color: rgba(43, 109, 184, 0.815);
-    width: 50%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: column;
+  background-color: rgba(43, 109, 184, 0.815);
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 .whiteSide {
-    background-color: white;
-    width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background-color: white;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.link > a {
+  height: 30px;
+  width: 150px;
+  position: fixed;
+  top: 30px;
+  left: 75%;
+  padding-top: 5px;
+  border-radius: 1px;
+  color: gray;
+  text-decoration: none;
+  text-align: center;
+  background-color: rgba(211, 234, 250, 0.993);
 }
 
-.link>a {
-    height: 30px;
-    width: 150px;
-    position: fixed;
-    top: 30px;
-    left: 75%;
-    padding-top: 5px;
-    border-radius: 1px;
-    color: gray;
-    text-decoration: none;
-    text-align: center;
-    background-color: rgba(211, 234, 250, 0.993);
+#logIn {
+  height: 25%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
-#signUp {
-    height: 25%;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+#logIn > input {
+  font-size: large;
+  padding-left: 1%;
+  border-style: none;
+  border-radius: 5px;
+  height: 20%;
+  width: 100%;
+  margin-bottom: 10px;
 }
-
-#signUp>input {
-    height: 10%;
-    width: 100%;
-    margin-bottom: 10px;
+#logIn > button {
+  font-size: large;
+  border-radius: 5px;
+  border-style: none;
+  height: 20%;
+  width: 100%;
+  margin-bottom: 10px;
+  background-color: rgb(0, 140, 255);
+  color: white;
+  font-family: sans-serif;
 }
-
-#signUp>button {
-    height: 10%;
-    width: 100%;
-    margin-bottom: 10px;
-    background-color: rgb(0, 140, 255);
-    color: white;
-    font-family: sans-serif;
+#logIn > button {
+  font-size: large;
+  border-radius: 5px;
+  border-style: none;
+  height: 20%;
+  width: 100%;
+  margin-bottom: 10px;
+  background-color: rgb(0, 140, 255);
+  color: white;
+  font-family: sans-serif;
 }
 
 .card-body {
-    text-decoration: underline;
+  text-decoration: underline;
+}
+.list_container {
+  width: fit-content;
+  border: 2px solid black;
 }
 
-.list_container {
-    width: fit-content;
-    border: 2px solid black;
+.page > img {
+  position: fixed;
+  width: 20%;
+  left: 15%;
+  top: 13%;
+}
+/* quote under the minion*/
+.page > p {
+  position: fixed;
+  width: 20%;
+  left: 16%;
+  top: 65%;
+  font-size: 2rem;
 }
