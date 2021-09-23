@@ -18,7 +18,13 @@ html
       input#newListButton(type="button" value="New List")
       input#newListInput(type="hidden" placeholder="Enter list name")
     div.task_container
-      div#listTitle
+      div#titleContainer
+      div#editListDiv.hidden
+        input#editListName.hidden(type='input' placeholder='Enter new list name')
+        input#submitEditListName.hidden(type='button' value='Submit') 
+        input#cancelEditListName.hidden(type='button' value='Cancel')
+      div#titleButton
+        input#titleListEdit(type='button' value='Edit list name')
       ul.task_list
       div.taskButtons
        input#newTaskButton(type="button" value="Add Task")
