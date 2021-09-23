@@ -13,10 +13,13 @@ html
     div.nav_bar
   script(src="/javascripts/list.js" type="module" defer)
   div.list_container
-  div.button
+  div.listButtons
     input#newListButton(type="button" value="New List")
     input#newListInput(type="hidden" placeholder="Enter list name")
   div.task_container
+    div#listTitle 
     ul.task_list
-  div.button
-    input#newListButton(type="button" value="New List")
+    div.taskButtons
+     input#newTaskButton(type="button" value="Add Task")
+     input#newTaskInput(type="hidden" placeholder="Enter task name")
+
