@@ -3,7 +3,9 @@ extends layout.pug
 include utils.pug
 
 block content
-    div(class="page")
+    div(class='page')
+        img(src='/stylesheets/minionlogo.png')
+        p(class="quote") “C’est banana! Hahaha! Miam Miam! Huh?” – Minions
         div(class="blueSide")
         +validationErrorSummary(errors)
         div(class="whiteSide")
