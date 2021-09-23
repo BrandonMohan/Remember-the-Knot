@@ -1,41 +1,87 @@
 body {
-    background-color: #e4eef8;
-    margin: 0px;
+  background-color: #e4eef8;
+  margin: 0px;
 }
 #header h1 {
-    margin: 0px;
+  margin: 0px;
 }
 
 .nav_bar {
-    display: flex;
-    justify-content: space-between;
-    padding: 4px;
-    align-items: center;
-    background-color: #0060bf;
+  display: flex;
+  justify-content: space-between;
+  padding: 4px;
+  align-items: center;
+  background-color: #0060bf;
 }
 
 .task_container {
-    margin-left: 220px;
-
+  margin-left: 220px;
 }
 
 #logout {
-    align-self: center;
-    position: fixed;
-    top: 9px;
-    left: 94%;
+  align-self: center;
+  position: relative;
+  top: 9px;
+  left: 1px;
 }
 
 #newListButton {
-    display: flex;
-    justify-content: flex-start;
+  display: flex;
+  justify-content: flex-start;
+}
 
+/* .task_container {
+  display: block;
+  box-shadow: 0 1px 0 rgba(255, 255, 255);
+  height: 800px;
+  width: 528px;
+  background-color: white;
+} */
+/*under nav bar page*/
+.app {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(211, 231, 246);
 }
 
 .task_container {
-    display: block;
-    box-shadow: 0 1px 0 rgba(255, 255, 255,);
-    height: 800px;
-    width: 528px;
-    background-color: white;
+  width: 55%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column-reverse;
+  position: relative;
+  left: 7.5vh;
+  top: 0.5vh;
+}
+#newTaskButton {
+  border: 0.1px dotted black;
+  border-radius: 0.5rem;
+  text-decoration: none;
+}
+.taskButtons > input {
+  background-color: rgb(211, 231, 246);
+  border-style: none;
+  text-decoration: none;
+  padding-left: 3rem;
+  text-align: left;
+  font-size: large;
+  width: 100%;
+  height: 100%;
+}
+
+.task_list > li {
+  border-bottom: 0.5px dotted black;
+}
+
+/*Lists*/
+.list_container {
+  border-style: none;
+  width: fit-content;
+  font-size: larger;
+}
+.listButtons > input {
+  font-size: larger;
+}
+.list_div {
+  border-bottom: 0.5px solid black;
 }
