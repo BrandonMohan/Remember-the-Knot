@@ -1,39 +1,100 @@
+body {
+    overflow: scroll;
+}
+
 #container {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
 }
 
 #top_div {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 50%;
-  background-color: #0060bf;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 30%;
+    background-color: #0060bf;
 }
 
 #bottom_div {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  left: 0;
-  bottom: 0;
+    position: absolute;
+    top: 70%;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.nav>#github-link {
+    color: black;
 }
 
 .middle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .nav {
-  width: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  justify-content: space-between;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 150px;
+    padding-left: 600px;
+    padding-right: 25px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    font-size: 20px;
+}
+
+.nav>a {
+    text-decoration: none;
+    color: darkgrey;
+}
+
+a:hover {
+    color: black;
+}
+
+.nav {
+    border-bottom: 1px solid #e4eef8;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+.description {
+    margin-left: auto;
+    margin-right: auto;
+    width: 20em;
+}
+
+#mission {
+    display: flex;
+    justify-content: center;
+}
+
+hr {
+    width: 30%
+}
+
+h3 {
+    font-size: 20px;
+}
+
+a>#login-btn {
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }
