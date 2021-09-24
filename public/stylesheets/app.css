@@ -25,11 +25,6 @@ body {
   left: 1px;
 }
 
-#newListButton {
-  display: flex;
-  justify-content: flex-start;
-}
-
 /* .task_container {
   display: block;
   box-shadow: 0 1px 0 rgba(255, 255, 255);
@@ -105,3 +100,48 @@ body {
   padding: 10px;
 }
 
+/* button styling */
+.btnDelete {
+  background-color: rgb(211, 231, 246);
+  color: #6DB7F3;
+  border: none;
+}
+.btnDelete:hover {
+  color: #405DC5 ;
+  cursor: pointer;
+}
+#newListButton {
+  background-color: #407CC5;
+  border-radius: 5px;
+  background-color: rgb(59, 113, 230);
+  border: rgb(59, 113, 230) solid 2px;
+}
+#newListButton:hover {
+  background-color: #4991E9;
+  border-radius: 5px;
+  border: #2FABE7 solid 2px;
+  cursor: pointer;
+}
+
+.listButtons {
+  display: flex;
+  width: 200px;
+  justify-content: center;
+  margin: 3px;
+}
+
+#newListInput {
+  width: 175;
+}
+
+.list_div:hover {
+  color: #4991E9;
+cursor: pointer;
+}
+
+/* Heading Styles */
+#listOfListHeading  {
+  font-size: large;
+  border-bottom: #6DB7F3 solid 2px;
+  width: 100px;
+}
