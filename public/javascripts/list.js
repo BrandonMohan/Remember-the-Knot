@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const renderTitle = (title) => {
     const listTitle = document.querySelector("#titleContainer")
-    listTitle.innerHTML = `<h2>${title} List</h2>`
+    listTitle.innerHTML = `<h2>${title}</h2>`
     editListNameEventHandler(title);
   }
 
@@ -165,18 +165,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     const editListInput = document.querySelector('#editListName')
     const editListSubmit = document.querySelector('#submitEditListName')
     const editListCancel = document.querySelector('#cancelEditListName')
+    const greyOutBackground = document.querySelector('#greyOut')
     editTitleButton.addEventListener('click', (event) => {
       editListDiv.setAttribute('class', 'show')
       editListInput.setAttribute('class', 'show')
       editListSubmit.setAttribute('class', 'show')
       editListCancel.setAttribute('class', 'show')
+      greyOutBackground.setAttribute('class', 'greyBackground')
     })
     editListCancel.addEventListener('click', (event) => {
       editListDiv.setAttribute('class', 'hidden')
-      editListInput.setAttribute('value', '')
+      editListInput.setAttribute('value', ' ')
       editListInput.setAttribute('class', 'hidden')
       editListSubmit.setAttribute('class', 'hidden')
       editListCancel.setAttribute('class', 'hidden')
+      greyOutBackground.setAttribute('class', 'hidden')
     })
     editListSubmit.addEventListener('click', async (event) => {
       if (editListInput.value) {
@@ -187,9 +190,10 @@ document.addEventListener('DOMContentLoaded', async () => {
           editListInput.setAttribute('class', 'hidden');
           editListSubmit.setAttribute('class', 'hidden');
           editListCancel.setAttribute('class', 'hidden');
+          greyOutBackground.setAttribute('class', 'hidden');
           renderTitle(editListInput.value)
           currentListDiv.innerHTML = `<div data-listId="${lastClickedListId}" class="list_div list${lastClickedListId}"><button id=${lastClickedListId} class='btnDelete list${lastClickedListId}'>x</button>${editListInput.value}</div>`
-          editListInput.setAttribute('value', '');
+          editListInput.setAttribute('value', ' ');
         }
       }
     })
