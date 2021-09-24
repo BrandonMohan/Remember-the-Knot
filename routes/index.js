@@ -11,6 +11,68 @@ const db = require('../db/models');
 const { loginUser, logoutUser, requireAuth } = require('../auth');
 const { ResultWithContext } = require('express-validator/src/chain');
 
+const createAndPopDemo = async (req, res) => {
+  const newDemo = await db.User.create({
+    id: 666,
+    firstName: 'Demo',
+    lastName: 'User',
+    emailAddress: 'mr.demo.user@demo.mail.com',
+    hashedPassword: 'NeverGonnaGiveYouUpNeverGonnaLetYouDown'
+  })
+  loginUser(req, res, newDemo);
+  const { userId } = req.session.auth;
+  const newList = await db.List.create({
+    id: 997,
+    listName: 'My First List',
+    userOwner: userId
+  });
+  const todo = await db.List.create({
+    id: 998,
+    listName: 'To Do',
+    userOwner: userId
+  });
+  const rememberThings = await db.List.create({
+    id: 999,
+    listName: 'Things to Remember',
+    userOwner: userId
+  });
+  const task1 = await db.Task.create({
+    taskName: `Brads's birthday party on 9/27`,
+    listId: rememberThings.id,
+    completed: false
+  })
+  const task2 = await db.Task.create({
+    taskName: `Purchase a gift for Brad`,
+    listId: todo.id,
+    completed: false
+  })
+  const task3 = await db.Task.create({
+    taskName: `Brandon's graduation 12/10`,
+    listId: rememberThings.id,
+    completed: false
+  })
+  const task4 = await db.Task.create({
+    taskName: `Call JM back regarding joining his team`,
+    listId: todo.id,
+    completed: false
+  })
+  const task5 = await db.Task.create({
+    taskName: `Gym`,
+    listId: newList.id,
+    completed: false
+  })
+  const task6 = await db.Task.create({
+    taskName: `Water plants`,
+    listId: newList.id,
+    completed: false
+  })
+  const task7 = await db.Task.create({
+    taskName: `Sweep up a room`,
+    listId: newList.id,
+    completed: false
+  })
+}
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
   if (req.session.auth) {
@@ -106,7 +168,6 @@ router.post(
         listName: 'My First List',
         userOwner: userId
       });
-      console.log(newList);
       res.redirect('/app');
     } else {
       const errors = validatorErrors.array().map((error) => error.msg);
@@ -171,6 +232,45 @@ router.post(
     });
   })
 );
+
+router.get('/demo', asyncHandler(async (req, res) => {
+  const existingDemo = await db.User.findOne({ where: { id: 666 } })
+  if (existingDemo) {
+    res.redirect('/newDemo')
+  }
+  await createAndPopDemo(req, res)
+  res.redirect('/')
+}))
+
+router.get('/newDemo', asyncHandler(async (req, res) => {
+  res.render('demo')
+}))
+
+router.delete('/newDemo', asyncHandler(async (req, res) => {
+  const taskDeletion1 = await db.Task.destroy({
+    where: { listId: 997 }
+  })
+  const taskDeletion2 = await db.Task.destroy({
+    where: { listId: 998 }
+  })
+  const taskDeletion3 = await db.Task.destroy({
+    where: { listId: 999 }
+  })
+  const listDeletion1 = await db.List.destroy({
+    where: { id: 997 }
+  })
+  const listDeletion2 = await db.List.destroy({
+    where: { id: 998 }
+  })
+  const listDeletion3 = await db.List.destroy({
+    where: { id: 999 }
+  })
+  const userDeletion3 = await db.User.destroy({
+    where: { id: 666 }
+  })
+
+  res.redirect('/demo')
+}))
 
 router.post('/logout', (req, res) => {
   logoutUser(req, res);
