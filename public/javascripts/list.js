@@ -1,6 +1,7 @@
 
 document.addEventListener('DOMContentLoaded', async () => {
   let lastClickedListId;
+  let noList;
 
   const fetchList = async () => {
     const result = await fetch('/app/lists');
@@ -23,9 +24,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
   const renderTitle = (title) => {
-    const listTitle = document.querySelector("#titleContainer")
-    listTitle.innerHTML = `<h2>${title}</h2>`
-    editListNameEventHandler(title);
+    if (noList) {
+      const listTitle = document.querySelector("#titleContainer")
+      const titleListEditBtn = document.querySelector('#titleListEdit')
+      listTitle.innerHTML = `<h2>You have no list to add task to!<br> Tryna break my website, brad?<br></h2>`
+      titleListEditBtn.setAttribute('disabled', '')
+    } else {
+      const listTitle = document.querySelector("#titleContainer")
+      listTitle.innerHTML = `<h2>${title}</h2>`
+      editListNameEventHandler(title)
+    };
   }
 
   const renderList = (lists) => {
@@ -40,18 +48,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     return listcontainer.innerHTML = listHtml.join('');
   };
   const renderTasks = (tasks) => {
-    const taskList = document.querySelector('.task_list');
-    let taskHtml = [];
-    if (tasks.length) {
-      for (let task of tasks) {
-        const { taskName, id } = task;
-        taskHtml.push(`<li data-taskId="${id}" class="task_li">${taskName}</li>`);
+    if (noList) {
+      const newTaskButton = document.querySelector('#newTaskButton')
+      newTaskButton.setAttribute('disabled', "")
+    } else {
+      const taskList = document.querySelector('.task_list');
+      let taskHtml = [];
+      if (tasks.length) {
+        for (let task of tasks) {
+          const { taskName, id } = task;
+          taskHtml.push(`<li data-taskId="${id}" class="task_li">${taskName}</li> `);
+        }
       }
+      return taskList.innerHTML = taskHtml.join('');
     }
-    return taskList.innerHTML = taskHtml.join('');
   };
   const addList = async (listName) => {
-    const listcontainer = document.querySelector('.list_container');
     const result = await fetch('/app/lists', {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
@@ -124,7 +136,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             newList.addEventListener('click', async () => {
               renderTasks([])
             })
-            listcontainer.appendChild(newList)
+            if (noList) {
+              noList = false;
+              const titleListEditBtn = document.querySelector('#titleListEdit')
+              const newTaskButton = document.querySelector('#newTaskButton')
+              titleListEditBtn.removeAttribute('disabled')
+              newTaskButton.removeAttribute('disabled')
+              defaultView()
+            } else {
+              listcontainer.appendChild(newList)
+            }
           };
         }
       })
@@ -202,11 +223,16 @@ document.addEventListener('DOMContentLoaded', async () => {
   const defaultView = async () => {
     const lists = await fetchList();
     renderList(lists);
-    if (lists[0].id) {
+    if (lists.length) {
+      noList = false;
       const tasks = await fetchTasks(lists[0].id);
       renderTitle(lists[0].listName)
       renderTasks(tasks);
       lastClickedListId = lists[0].id;
+    } else {
+      noList = true;
+      renderTitle()
+      renderTasks()
     }
   }
   defaultView()
