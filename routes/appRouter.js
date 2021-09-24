@@ -24,7 +24,10 @@ router.get(
   '/lists',
   asyncHandler(async (req, res) => {
     const { userId } = req.session.auth;
-    const lists = await db.List.findAll({ where: { userOwner: userId } });
+    const lists = await db.List.findAll({
+      where: { userOwner: userId },
+      order: [['id', 'ASC']]
+    });
     if (lists) {
       res.json({ lists });
     }
@@ -44,6 +47,32 @@ router.post(
     res.json({ id: list.id, listName: list.listName });
   })
 );
+
+router.delete('/lists/:id', asyncHandler(async (req, res) => {
+  try {
+    const id = req.params.id
+    const taskDeletion = await db.Task.destroy({
+      where: { listId: id }
+    })
+    const listDeletion = await db.List.destroy({
+      where: { id }
+    })
+    res.send(200)
+  }
+  catch (err) {
+    console.log(err)
+  }
+}))
+
+router.put('/lists/:id/edit', asyncHandler(async (req, res) => {
+  const id = req.params.id
+  const { listName } = req.body
+  const updateListName = db.List.update(
+    { listName },
+    { where: { id } }
+  )
+  res.send(200)
+}))
 
 // return all tasks that belongs to list
 router.get(
@@ -97,6 +126,4 @@ router.get(
     res.render('search', { taskArr })
   })
 );
-
-
 module.exports = router;
