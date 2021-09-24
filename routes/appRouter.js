@@ -122,6 +122,7 @@ router.get(
     for (let task of tasks) {
       if (task.taskName.includes(term)) taskArr.push(task.taskName);
     }
+    res.render('search', { taskArr })
   })
 );
 

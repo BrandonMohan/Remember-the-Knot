@@ -48,7 +48,7 @@ body {
   width: 55%;
   display: flex;
   justify-content: center;
-  flex-direction: column-reverse;
+  flex-direction: column;
   position: relative;
   left: 7.5vh;
   top: 0.5vh;
