@@ -89,11 +89,14 @@ router.get(
     const tasks = await db.Task.findAll({
       where: { listId: userListIds }
     });
+    console.log(tasks);
     let taskArr = [];
     for (let task of tasks) {
-      if (task.taskName.includes(term)) taskArr.push(task.taskName);
+      if (task.taskName.includes(term)) taskArr.push(task);
     }
+    res.render('search', { taskArr })
   })
 );
+
 
 module.exports = router;
