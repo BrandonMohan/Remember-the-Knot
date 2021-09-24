@@ -5,10 +5,11 @@ html
         link(rel="shortcut icon" type="image/png" href="https://i.imgur.com/hgoSkWr.png")
         link(rel='stylesheet' href='/stylesheets/app.css')
   body
+    div#greyOut.hidden
     div.nav_bar
       H.nav_bar(id='app-header')
       form(action="/app/search" method="get")
-        input(type="text" name="term" placeholder="search")
+        input.searchBar(type="text" name="term" placeholder="search")
       form(action='/logout' method='post')
         button#logout(type="submit") Logout
     div.nav_bar

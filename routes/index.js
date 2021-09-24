@@ -16,8 +16,9 @@ router.get('/', function (req, res, next) {
   if (req.session.auth) {
     res.redirect('/app')
   } else {
-  res.render('home-page', { title: 'Home Page' });
-}});
+    res.render('home-page', { title: 'Home Page' });
+  }
+});
 
 const userValidators = [
   check('firstName')
@@ -102,7 +103,7 @@ router.post(
       loginUser(req, res, user);
       const { userId } = req.session.auth;
       const newList = db.List.create({
-        listName: 'testinglist',
+        listName: 'My First List',
         userOwner: userId
       });
       console.log(newList);
