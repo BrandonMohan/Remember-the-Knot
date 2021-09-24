@@ -4,5 +4,7 @@ window.addEventListener("load", async (event) => {
   }
 
   await deleteDemo()
-  window.location.href = "/demo";
+  setTimeout(function () {
+    window.location.href = "/demo";
+  }, 3000);
 })
