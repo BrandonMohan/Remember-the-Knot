@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const faker = require('faker');
 const {
   asyncHandler,
   handleValidationErrors,
@@ -9,7 +10,67 @@ const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const db = require('../db/models');
 const { loginUser, logoutUser, requireAuth } = require('../auth');
-const { ResultWithContext } = require('express-validator/src/chain');
+
+const createAndPopDemo = async (req, res) => {
+  const newDemo = await db.User.create({
+    firstName: 'Norman',
+    lastName: 'Lock',
+    emailAddress: faker.internet.email(),
+    hashedPassword: '1NeverGonnaGiveYouUpNeverGonnaLetYouDown!!'
+  })
+  loginUser(req, res, newDemo);
+  req.session.save(async function () {
+    const { userId } = req.session.auth;
+    const newList = await db.List.create({
+      listName: 'My First List',
+      userOwner: userId
+    });
+    const todo = await db.List.create({
+      listName: 'To Do',
+      userOwner: userId
+    });
+    const rememberThings = await db.List.create({
+      listName: 'Things to Remember',
+      userOwner: userId
+    });
+    const task1 = await db.Task.create({
+      taskName: `Brads's birthday party on 9/27`,
+      listId: rememberThings.id,
+      completed: false
+    })
+    const task2 = await db.Task.create({
+      taskName: `Purchase a gift for Brad`,
+      listId: todo.id,
+      completed: false
+    })
+    const task3 = await db.Task.create({
+      taskName: `Brandon's graduation 12/10`,
+      listId: rememberThings.id,
+      completed: false
+    })
+    const task4 = await db.Task.create({
+      taskName: `Call JM back regarding joining his team`,
+      listId: todo.id,
+      completed: false
+    })
+    const task5 = await db.Task.create({
+      taskName: `Gym`,
+      listId: newList.id,
+      completed: false
+    })
+    const task6 = await db.Task.create({
+      taskName: `Water plants`,
+      listId: newList.id,
+      completed: false
+    })
+    const task7 = await db.Task.create({
+      taskName: `Sweep up a room`,
+      listId: newList.id,
+      completed: false
+    })
+  });
+
+}
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -106,7 +167,6 @@ router.post(
         listName: 'My First List',
         userOwner: userId
       });
-      console.log(newList);
       res.redirect('/app');
     } else {
       const errors = validatorErrors.array().map((error) => error.msg);
@@ -172,9 +232,16 @@ router.post(
   })
 );
 
+router.get('/demo', asyncHandler(async (req, res) => {
+  await createAndPopDemo(req, res)
+  setTimeout(() => {
+    res.redirect('/')
+  }, 2000);
+}
+))
+
 router.post('/logout', (req, res) => {
   logoutUser(req, res);
-  res.redirect('/login');
 });
 
 module.exports = router;

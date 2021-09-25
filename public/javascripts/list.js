@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
   let lastClickedListId;
+  let noList;
 
   const fetchList = async () => {
     const result = await fetch('/app/lists');
@@ -38,20 +39,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     return (listcontainer.innerHTML = listHtml.join(''));
   };
   const renderTasks = (tasks) => {
-    const taskList = document.querySelector('.task_list');
-    let taskHtml = [];
-    if (tasks.length) {
-      for (let task of tasks) {
-        const { taskName, id } = task;
-        taskHtml.push(
-          `<li data-taskId="${id}" class="task_li">${taskName} <button id="editTaskButton" class="${id}" type="button">Edit</button></li>`
-        );
+    if (noList) {
+      const newTaskButton = document.querySelector('#newTaskButton');
+      newTaskButton.setAttribute('disabled', '');
+    } else {
+      const taskList = document.querySelector('.task_list');
+      let taskHtml = [];
+      if (tasks.length) {
+        for (let task of tasks) {
+          const { taskName, id } = task;
+          taskHtml.push(
+            `<li data-taskId="${id}" class="task_li">${taskName} <button id="editTaskButton" class="${id}" type="button">Edit</button></li> `
+          );
+        }
       }
+      return (taskList.innerHTML = taskHtml.join(''));
     }
-    return (taskList.innerHTML = taskHtml.join(''));
   };
   const addList = async (listName) => {
-    const listcontainer = document.querySelector('.list_container');
     const result = await fetch('/app/lists', {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
@@ -129,10 +134,18 @@ document.addEventListener('DOMContentLoaded', async () => {
             newList.addEventListener('click', async () => {
               const editForm = document.querySelector('.editForm');
               editForm.style.display = 'flex';
-
               renderTasks([]);
             });
-            listcontainer.appendChild(newList);
+            if (noList) {
+              noList = false;
+              const titleListEditBtn = document.querySelector('#titleListEdit');
+              const newTaskButton = document.querySelector('#newTaskButton');
+              titleListEditBtn.removeAttribute('disabled');
+              newTaskButton.removeAttribute('disabled');
+              defaultView();
+            } else {
+              listcontainer.appendChild(newList);
+            }
           }
         }
       });
@@ -258,11 +271,16 @@ document.addEventListener('DOMContentLoaded', async () => {
   const defaultView = async () => {
     const lists = await fetchList();
     renderList(lists);
-    if (lists[0].id) {
+    if (lists.length) {
+      noList = false;
       const tasks = await fetchTasks(lists[0].id);
       renderTitle(lists[0].listName);
       renderTasks(tasks);
       lastClickedListId = lists[0].id;
+    } else {
+      noList = true;
+      renderTitle();
+      renderTasks();
     }
   };
   defaultView();
