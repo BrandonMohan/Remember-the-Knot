@@ -59,31 +59,33 @@ router.post(
   })
 );
 
-router.delete('/lists/:id', asyncHandler(async (req, res) => {
-  try {
-    const id = req.params.id
-    const taskDeletion = await db.Task.destroy({
-      where: { listId: id }
-    })
-    const listDeletion = await db.List.destroy({
-      where: { id }
-    })
-    res.send(200)
-  }
-  catch (err) {
-    console.log(err)
-  }
-}))
+router.delete(
+  '/lists/:id',
+  asyncHandler(async (req, res) => {
+    try {
+      const id = req.params.id;
+      const taskDeletion = await db.Task.destroy({
+        where: { listId: id }
+      });
+      const listDeletion = await db.List.destroy({
+        where: { id }
+      });
+      res.send(200);
+    } catch (err) {
+      console.log(err);
+    }
+  })
+);
 
-router.put('/lists/:id/edit', asyncHandler(async (req, res) => {
-  const id = req.params.id
-  const { listName } = req.body
-  const updateListName = db.List.update(
-    { listName },
-    { where: { id } }
-  )
-  res.send(200)
-}))
+router.put(
+  '/lists/:id/edit',
+  asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const { listName } = req.body;
+    const updateListName = db.List.update({ listName }, { where: { id } });
+    res.send(200);
+  })
+);
 
 // return all tasks that belongs to list
 router.get(
@@ -134,7 +136,25 @@ router.get(
     for (let task of tasks) {
       if (task.taskName.includes(term)) taskArr.push(task);
     }
-    res.render('search', { taskArr })
+    res.render('search', { taskArr });
+  })
+);
+
+//UPDATE TASK
+router.put(
+  '/task/:id/edit',
+  asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const { editValue } = req.body;
+    console.log(id);
+    // const tasks = await db.Task.findOne({
+    //   where: { id: id }
+    // });
+    const updateTask = db.Task.update(
+      { taskName: editValue },
+      { where: { id } }
+    );
+    res.send(200);
   })
 );
 module.exports = router;

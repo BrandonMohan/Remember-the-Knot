@@ -15,6 +15,7 @@ html
         button#logout(type="submit") Logout
     div.nav_bar
   script(src="/javascripts/list.js" type="module" defer)
+  script(src="/javascripts/index.js" type="module" defer)
   div.app
     div#listOfListHeading Your Lists
     div.list_container
@@ -25,7 +26,7 @@ html
       div#titleContainer
       div#editListDiv.hidden
         input#editListName.hidden(type='input' placeholder='Enter new list name')
-        input#submitEditListName.hidden(type='button' value='Submit') 
+        input#submitEditListName.hidden(type='button' value='Submit')
         input#cancelEditListName.hidden(type='button' value='Cancel')
       div#titleButton
         input#titleListEdit(type='button' value='Edit list name')
@@ -33,3 +34,5 @@ html
       div.taskButtons
        input#newTaskButton(type="button" value="Add Task")
        input#newTaskInput(type="hidden" placeholder="Enter task name")
+      div.editForm
+        input#eTaskInput(type='text' value='')
