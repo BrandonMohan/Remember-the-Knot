@@ -6,17 +6,16 @@ const loginUser = (req, res, user) => {
     };
 };
 
-const logoutUser = (req, res) => {
+const logoutUser = async (req, res) => {
     // console.log('prior to logout' + req.session);
-    delete req.session.auth;
-    // res.send('logout successful')
+    await delete req.session.auth;
+    res.redirect('/')
 };
 
 
 const requireAuth = (req, res, next) => {
     if (!res.locals.authenticated) {
-        console.log('Login in please')
-        return res.redirect('/login');
+        return res.redirect('/');
     }
     return next();
 };
