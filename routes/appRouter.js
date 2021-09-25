@@ -65,7 +65,19 @@ router.delete(
     }
   })
 );
-
+router.delete(
+  '/task/:id/delete',
+  asyncHandler(async (req, res) => {
+    try {
+      const taskDeletion = await db.Task.destroy({
+        where: { listId: id }
+      });
+      res.send(200);
+    } catch (err) {
+      console.log(err);
+    }
+  })
+);
 router.put(
   '/lists/:id/edit',
   asyncHandler(async (req, res) => {

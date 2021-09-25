@@ -11,6 +11,12 @@ document.addEventListener('click', function (event) {
     });
     return result;
   };
+  const removeTask = async (id) => {
+    const result = await fetch(`/app/task/${id}/delete`, {
+      method: 'DELETE'
+    });
+    return result;
+  };
   event.stopPropagation();
   if (event.target.id == 'editTaskButton') {
     event.preventDefault();
@@ -20,10 +26,18 @@ document.addEventListener('click', function (event) {
     submitEdit.id = `editButton`;
     submitEdit.innerHTML = `Edit #${tId}`;
     submitEdit.setAttribute('class', `${tId}`);
+
+    const markComplete = document.createElement('button');
+    markComplete.id = `completeButton`;
+    markComplete.innerHTML = `Mark Task Complete`;
+    markComplete.setAttribute('class', `${tId}`);
+
     editForm.appendChild(submitEdit);
+    editForm.appendChild(markComplete);
   }
 
   const submitEdit = document.getElementById('editButton');
+  const submitComplete = document.getElementById('completeButton');
 
   const editValue = document.querySelector('#eTaskInput');
   submitEdit.addEventListener('click', async (event) => {
@@ -33,5 +47,24 @@ document.addEventListener('click', function (event) {
     currentTask.innerHTML = `<li data-taskId="${submitEdit.className}" class="task_li task${submitEdit.className}">${editValue.value} <button id="editTaskButton" class="${submitEdit.className}" type="button">Edit</button></li> `;
     // console.log(editValue.value, submitEdit.className);
     let result = await editTask(submitEdit.className, editValue.value);
+    submitEdit.remove();
+    submitComplete.remove();
+    editValue.value = '';
+    editForm.style.display = 'none';
+  });
+
+  submitComplete.addEventListener('click', async (event) => {
+    event.stopImmediatePropagation();
+    const currentTask = document.querySelector(`.task${submitEdit.className}`);
+    console.log(currentTask);
+    currentTask.innerHTML = `<li data-taskId="${submitEdit.className}" class="task_li task${submitEdit.className}">${editValue.value} <button id="editTaskButton" class="${submitEdit.className}" type="button">Edit</button></li> `;
+
+    // console.log(editValue.value, submitEdit.className);
+    let result = await editTask(submitEdit.className, editValue.value);
+    submitEdit.remove();
+    submitComplete.remove();
+    currentTask.remove();
+    editValue.value = '';
+    editForm.style.display = 'none';
   });
 });

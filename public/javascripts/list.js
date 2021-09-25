@@ -103,7 +103,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             newButton.innerHTML = `Edit`;
             newElement.appendChild(newButton);
             newElement.setAttribute('class', `${id}`);
-
             taskList.appendChild(newElement);
           }
         }
