@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         for (let task of tasks) {
           const { taskName, id } = task;
           taskHtml.push(
-            `<li data-taskId="${id}" class="task_li">${taskName} <button id="editTaskButton" class="${id}" type="button">Edit</button></li> `
+            `<li data-taskId="${id}" class="task_li task${id}">${taskName} <button id="editTaskButton" class="${id}" type="button">Edit</button></li> `
           );
         }
       }
@@ -97,13 +97,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             newTaskInput.value = '';
             const { id, taskName } = task;
             let newElement = document.createElement('li');
-            newElement.innerText = `${taskName} `;
+            newElement.className = `task_li task${id}`;
+            taskList.appendChild(newElement);
             let newButton = document.createElement('button');
             newButton.id = `editButton`;
-            newButton.innerHTML = `Edit`;
+            newButton.innerHTML = `Edit #${id}`;
             newElement.appendChild(newButton);
-            newElement.setAttribute('class', `${id}`);
-            taskList.appendChild(newElement);
+            newElement.setAttribute('class', `task_li task${id}`);
           }
         }
       });
