@@ -68,9 +68,10 @@ router.delete(
 router.delete(
   '/task/:id/delete',
   asyncHandler(async (req, res) => {
+    const id = req.params.id;
     try {
       const taskDeletion = await db.Task.destroy({
-        where: { listId: id }
+        where: { id: id }
       });
       res.send(200);
     } catch (err) {
