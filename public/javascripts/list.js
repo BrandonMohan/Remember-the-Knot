@@ -94,8 +94,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             let newElement = document.createElement('li');
             newElement.innerText = `${taskName} `;
             let newButton = document.createElement('button');
-            newButton.innerHTML = `id="editTaskButton value="${id}"`;
+            newButton.id = `editButton`;
+            newButton.innerHTML = `Edit`;
             newElement.appendChild(newButton);
+            newElement.setAttribute('class', `${id}`);
             taskList.appendChild(newElement);
           }
         }
@@ -125,6 +127,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             let newList = document.createElement('div');
             newList.innerHTML = `<div data-listId="${id}" class="list_div list${id}"><button id=${id} class='btnDelete list${id}'>x</button>${listName}</div>`;
             newList.addEventListener('click', async () => {
+              const editForm = document.querySelector('.editForm');
+              editForm.style.display = 'flex';
+
               renderTasks([]);
             });
             listcontainer.appendChild(newList);
