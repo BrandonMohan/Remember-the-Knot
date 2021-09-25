@@ -101,8 +101,8 @@ body {
 }
 
 .show {
- display: inline-flex;
- z-index: 2;
+  display: inline-flex;
+  z-index: 2;
 }
 
 #editListDiv {
@@ -118,23 +118,23 @@ body {
 /* button styling */
 .btnDelete {
   background-color: rgb(211, 231, 246);
-  color: #6DB7F3;
+  color: #6db7f3;
   border: none;
 }
 .btnDelete:hover {
-  color: #405DC5 ;
+  color: #405dc5;
   cursor: pointer;
 }
 #newListButton {
-  background-color: #407CC5;
+  background-color: #407cc5;
   border-radius: 5px;
   background-color: rgb(59, 113, 230);
   border: rgb(59, 113, 230) solid 2px;
 }
 #newListButton:hover {
-  background-color: #4991E9;
+  background-color: #4991e9;
   border-radius: 5px;
-  border: #2FABE7 solid 2px;
+  border: #2fabe7 solid 2px;
   cursor: pointer;
 }
 
@@ -150,13 +150,23 @@ body {
 }
 
 .list_div:hover {
-  color: #4991E9;
-cursor: pointer;
+  color: #4991e9;
+  cursor: pointer;
 }
 
 /* Heading Styles */
-#listOfListHeading  {
+#listOfListHeading {
   font-size: large;
-  border-bottom: #6DB7F3 solid 2px;
+  border-bottom: #6db7f3 solid 2px;
   width: 100px;
+}
+.editForm {
+  display: none;
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  justify-content: center;
+  flex-direction: column;
+  left: 60%;
+  top: 25%;
 }
