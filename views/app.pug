@@ -7,9 +7,10 @@ html
   body
     div#greyOut.hidden
     div.nav_bar
+      h3#greetings #{greeting}, #{firstName}!
       H.nav_bar(id='app-header')
       form(action="/app/search" method="get")
-        input.searchBar(type="text" name="term" placeholder="search")
+        input.searchBar(type="text" name="term" placeholder="Search")
       form(action='/logout' method='post')
         button#logout(type="submit") Logout
     div.nav_bar

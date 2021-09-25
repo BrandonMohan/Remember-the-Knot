@@ -9,14 +9,25 @@ const { check, validationResult } = require('express-validator');
 const db = require('../db/models');
 const { loginUser, logoutUser, requireAuth } = require('../auth');
 
+const dynamicGreeting = async () => {
+  const greetingsArr = ['Hello', 'Good Day', 'Hi', 'Welcome back', 'Bonjour', 'Konichiwa', 'Greetings', 'Hola', 'Yo', 'Hey']
+  const randomNumber = Math.floor(Math.random() * 10)
+  const greeting = greetingsArr[randomNumber]
+  return greeting
+}
+
 router.get(
   '/',
   requireAuth,
   asyncHandler(async (req, res) => {
     // return all list from userId
     const { userId } = req.session.auth;
-
-    res.render('app');
+    const greeting = await dynamicGreeting()
+    const user = await db.User.findByPk(
+      userId
+    )
+    const firstName = user.firstName
+    res.render('app', { greeting, firstName });
   })
 );
 

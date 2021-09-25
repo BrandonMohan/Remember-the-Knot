@@ -13,8 +13,8 @@ const { loginUser, logoutUser, requireAuth } = require('../auth');
 
 const createAndPopDemo = async (req, res) => {
   const newDemo = await db.User.create({
-    firstName: 'Norman',
-    lastName: 'Lock',
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
     emailAddress: faker.internet.email(),
     hashedPassword: '1NeverGonnaGiveYouUpNeverGonnaLetYouDown!!'
   })
