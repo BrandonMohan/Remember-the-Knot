@@ -97,13 +97,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             newTaskInput.value = '';
             const { id, taskName } = task;
             let newElement = document.createElement('li');
-            newElement.className = `task_li task${id}`;
+            newElement.innerHTML = `<li data-taskId="${id}" class="task_li task${id}">${taskName} <button id="editTaskButton" class="${id}" type="button">Edit</button></li> `;
             taskList.appendChild(newElement);
-            let newButton = document.createElement('button');
-            newButton.id = `editButton`;
-            newButton.innerHTML = `Edit #${id}`;
-            newElement.appendChild(newButton);
-            newElement.setAttribute('class', `task_li task${id}`);
+            // let newButton = document.createElement('button');
+            // newButton.id = `editButton`;
+            // newButton.innerHTML = `Edit`;
+            // newElement.appendChild(newButton);
+            // newElement.setAttribute('class', `task_li task${id}`);
           }
         }
       });
