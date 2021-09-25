@@ -1,6 +1,5 @@
 document.addEventListener('click', function (event) {
-  event.stopPropagation();
-  event.preventDefault();
+  event.stopImmediatePropagation();
 
   const editForm = document.querySelector('.editForm');
 
@@ -15,7 +14,6 @@ document.addEventListener('click', function (event) {
   event.stopPropagation();
   if (event.target.id == 'editTaskButton') {
     event.preventDefault();
-
     const tId = event.target.className;
     editForm.style.display = 'flex';
     const submitEdit = document.createElement('button');
@@ -29,7 +27,11 @@ document.addEventListener('click', function (event) {
 
   const editValue = document.querySelector('#eTaskInput');
   submitEdit.addEventListener('click', async (event) => {
+    event.stopImmediatePropagation();
+    const currentTask = document.querySelector(`.task${submitEdit.className}`);
+    console.log(currentTask);
+    currentTask.innerHTML = `<li data-taskId="${submitEdit.className}" class="task_li task${submitEdit.className}">${editValue.value} <button id="editTaskButton" class="${submitEdit.className}" type="button">Edit</button></li> `;
     // console.log(editValue.value, submitEdit.className);
-    await editTask(submitEdit.className, editValue.value);
+    let result = await editTask(submitEdit.className, editValue.value);
   });
 });
