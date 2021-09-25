@@ -126,7 +126,6 @@ body {
   cursor: pointer;
 }
 #newListButton {
-  background-color: #407cc5;
   border-radius: 5px;
   background-color: rgb(59, 113, 230);
   border: rgb(59, 113, 230) solid 2px;
@@ -135,6 +134,28 @@ body {
   background-color: #4991e9;
   border-radius: 5px;
   border: #2fabe7 solid 2px;
+  cursor: pointer;
+}
+#titleListEdit {
+  border-radius: 5px;
+  background-color: rgb(59, 113, 230);
+  border: rgb(59, 113, 230) solid 2px;
+}
+#titleListEdit:hover {
+  background-color: #4991E9;
+  border-radius: 5px;
+  border: #2FABE7 solid 2px;
+  cursor: pointer;
+}
+#logout {
+  background-color: white;
+  border-radius: 5px;
+  border: #0060bf solid 3px;
+}
+#logout:hover {
+  background-color: white;
+  border-radius: 5px;
+  border: #2FABE7 solid 3px;
   cursor: pointer;
 }
 
@@ -160,6 +181,13 @@ body {
   border-bottom: #6db7f3 solid 2px;
   width: 100px;
 }
+
+
+#greetings {
+  color: white;
+  position: absolute;
+  left: 3%
+}
 .editForm {
   display: none;
   position: absolute;
@@ -170,3 +198,4 @@ body {
   left: 60%;
   top: 25%;
 }
+
