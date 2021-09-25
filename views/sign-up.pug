@@ -8,6 +8,8 @@ block content
     div(class="blueSide")
     +validationErrorSummary(errors)
     div(class="whiteSide")
+      div(class="link")
+        a( id="home" href="/") Home Page
       form(id="form" action="/signup" method="post")
             h1 Make an account!
             input(type="hidden" name="_csrf" value=csrfToken)           
@@ -16,5 +18,4 @@ block content
             input(type="email" name="emailAddress" value=user.emailAddress placeholder="email")
             input(type="password" name="password" placeholder="Password")
             input(type="password" name="confirmPassword" placeholder="Confirm Password")
-            div(class="button")
             button Create 
