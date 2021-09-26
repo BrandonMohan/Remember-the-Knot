@@ -8,6 +8,8 @@ block content
     div(class="blueSide")
     +validationErrorSummary(errors)
     div(class="whiteSide")
+      div(class="link")
+                  a(href='/') Home Page
       form(id="form" action="/signup" method="post")
             h1 Make an account!
             input(type="hidden" name="_csrf" value=csrfToken)           
