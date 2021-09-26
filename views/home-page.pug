@@ -3,10 +3,14 @@ extends home-page-layout.pug
 include utils.pug
 
 block content
+    script(src="/javascripts/homepage.js" type="module" defer)
+    div#greyOut.hidden
+        label(for="demoClick") Creating demo user
+        progress#demoClick
     div(class="container")
     div(id="top_div")
         div(class="nav")
-            a(href='/demo') Demo
+            a#demoButton(href='/demo') Demo
             a(href="/login") Log in
             a(href='/signup')
                 button(type="submit") Sign up for Free!
