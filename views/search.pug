@@ -1,5 +1,18 @@
-h1
-    ul
-        each task in taskArr
-            li= task.taskName
+doctype html
+html
+  head
+      block head
+      link(rel='stylesheet' href='/stylesheets/search.css')
+  body
+    block content
+    div(class="back-to-app")
+        a(href="/app")
+                button(type="button") Back to Tasks
+        div(class="container")
+        
+                h1(id="res") Results:
+                    h2
+                        ul
+                            each task in taskArr
+                                li= task.taskName
 
