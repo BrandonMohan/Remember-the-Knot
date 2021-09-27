@@ -1,12 +1,20 @@
 document.addEventListener('DOMContentLoaded', async () => {
   let lastClickedListId;
   let noList;
+  let taskAmt = 0;
+
 
   const fetchList = async () => {
     const result = await fetch('/app/lists');
     const { lists } = await result.json();
     return lists;
   };
+
+  const fetchSingleList = async (listId) => {
+    const result = await fetch(`/app/lists/${listId}`)
+    const { list } = await result.json()
+    return list
+  }
   const fetchPutList = async (listId, listName) => {
     const result = await fetch(`/app/lists/${listId}/edit`, {
       method: 'PUT',
@@ -33,6 +41,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   };
 
+  const renderListSummary = async (numTask) => {
+    const list = await fetchSingleList(lastClickedListId)
+    const listSumDiv = document.querySelector('#listSummary')
+    const dateCreated = list.createdAt.slice(0, 10)
+    console.log(list.createdAt)
+    if (noList) {
+      listSumDiv.innerHTML = ''
+    } else {
+      taskAmt += numTask
+      listSumDiv.innerHTML = `<span>Number of tasks: ${taskAmt}</span><span>List creation date: ${dateCreated}</span>`
+    }
+  }
+
   const renderList = (lists) => {
     const listcontainer = document.querySelector('.list_container');
     let listHtml = [];
@@ -52,6 +73,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       newTaskButton.setAttribute('disabled', '');
     } else {
       let taskHtml = [];
+      console.log(tasks.length)
       if (tasks.length) {
         for (let task of tasks) {
           const { taskName, id } = task;
@@ -106,6 +128,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             let newElement = document.createElement('li');
             newElement.innerHTML = `<li data-taskId="${id}" class="task_li task${id}">${taskName} <button id="editTaskButton" class="${id}" type="button">Edit</button></li> `;
             taskList.appendChild(newElement);
+            renderListSummary(1)
             // let newButton = document.createElement('button');
             // newButton.id = `editButton`;
             // newButton.innerHTML = `Edit`;
@@ -166,6 +189,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (listId) {
         renderTitle(listName);
         const tasks = await fetchTasks(listId);
+        taskAmt = 0;
+        renderListSummary(tasks.length)
         renderTasks(tasks);
         lastClickedListId = Number(listId);
       }
@@ -281,8 +306,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (lists.length) {
       noList = false;
       const tasks = await fetchTasks(lists[0].id);
+      lastClickedListId = lists[0].id
       renderTitle(lists[0].listName);
       renderTasks(tasks);
+      renderListSummary(tasks.length)
       lastClickedListId = lists[0].id;
     } else {
       noList = true;

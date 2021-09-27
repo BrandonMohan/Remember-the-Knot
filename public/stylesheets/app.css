@@ -80,6 +80,21 @@ body {
     border-bottom: 0.5px dotted black;
 }
 
+#listSummary {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+#divButton {
+    margin-top: 0;
+}
+
+#titleContainer {
+    margin-bottom: 0;
+    height: 50px;
+}
+
 
 /*Lists*/
 
@@ -189,7 +204,7 @@ body {
 }
 
 #newListInput {
-    width: 175;
+    width: 200px;
 }
 
 .list_div:hover {

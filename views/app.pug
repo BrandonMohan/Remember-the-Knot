@@ -21,18 +21,19 @@ html
     div.list_container
     div.listButtons
       input#newListButton(type="button" value="New List")
-      input#newListInput(type="hidden" placeholder="Enter list name")
+      input#newListInput(type="hidden" placeholder="Press enter to submit")
     div.task_container
       div#titleContainer
       div#editListDiv.hidden
-        input#editListName.hidden(type='input' placeholder='Enter new list name')
+        input#editListName.hidden(type='input' placeholder='Enter new name')
         input#submitEditListName.hidden(type='button' value='Submit')
         input#cancelEditListName.hidden(type='button' value='Cancel')
       div#titleButton
         input#titleListEdit(type='button' value='Edit list name')
+      div#listSummary
       ul.task_list
       div.taskButtons
        input#newTaskButton(type="button" value="Add Task")
-       input#newTaskInput(type="hidden" placeholder="Enter task name")
+       input#newTaskInput(type="hidden" placeholder="Press enter to submit")
       div.editForm
         input#eTaskInput(type='text' value='')
