@@ -222,16 +222,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     editTitleButton.addEventListener('click', (event) => {
       editListDiv.setAttribute('class', 'show');
       editListInput.setAttribute('class', 'show');
-      editListSubmit.setAttribute('class', 'show');
-      editListCancel.setAttribute('class', 'show');
       greyOutBackground.setAttribute('class', 'greyBackground');
     });
     editListCancel.addEventListener('click', (event) => {
       editListDiv.setAttribute('class', 'hidden');
       editListInput.setAttribute('value', ' ');
       editListInput.setAttribute('class', 'hidden');
-      editListSubmit.setAttribute('class', 'hidden');
-      editListCancel.setAttribute('class', 'hidden');
       greyOutBackground.setAttribute('class', 'hidden');
     });
     editListSubmit.addEventListener('click', async (event) => {

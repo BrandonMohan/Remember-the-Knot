@@ -1,9 +1,9 @@
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
     event.stopImmediatePropagation();
 
     const editForm = document.querySelector('.editForm');
 
-    const editTask = async(id, editValue) => {
+    const editTask = async (id, editValue) => {
         const result = await fetch(`/app/task/${id}/edit`, {
             method: 'put',
             headers: { 'Content-type': 'application/json' },
@@ -11,7 +11,7 @@ document.addEventListener('click', function(event) {
         });
         return result;
     };
-    const removeTask = async(id) => {
+    const removeTask = async (id) => {
         const result = await fetch(`/app/task/${id}/delete`, {
             method: 'DELETE'
         });
@@ -40,10 +40,9 @@ document.addEventListener('click', function(event) {
     const submitComplete = document.getElementById('completeButton');
 
     const editValue = document.querySelector('#eTaskInput');
-    submitEdit.addEventListener('click', async(event) => {
+    submitEdit.addEventListener('click', async (event) => {
         event.stopImmediatePropagation();
         const currentTask = document.querySelector(`.task${submitEdit.className}`);
-        console.log(currentTask);
         currentTask.innerHTML = `<li data-taskId="${submitEdit.className}" class="task_li task${submitEdit.className}">${editValue.value} <button id="editTaskButton" class="${submitEdit.className}" type="button">Edit</button></li> `;
         // console.log(editValue.value, submitEdit.className);
         let result = await editTask(submitEdit.className, editValue.value);
@@ -53,7 +52,7 @@ document.addEventListener('click', function(event) {
         editForm.style.display = 'none';
     });
 
-    submitComplete.addEventListener('click', async(event) => {
+    submitComplete.addEventListener('click', async (event) => {
         event.stopImmediatePropagation();
         const currentTask = document.querySelector(`.task${submitEdit.className}`);
         currentTask.innerHTML = `<li data-taskId="${submitEdit.className}" class="task_li task${submitEdit.className}">${editValue.value} <button id="editTaskButton" class="${submitEdit.className}" type="button">Edit</button></li> `;
