@@ -146,6 +146,64 @@ body {
 
 /* button styling */
 
+.btn {
+    border-radius: 5px;
+    background-color: rgb(59, 113, 230);
+    border: rgb(59, 113, 230) solid 2px;
+}
+
+.btn:hover {
+    background-color: #4991e9;
+    border-radius: 5px;
+    border: #2fabe7 solid 2px;
+    cursor: pointer;
+}
+
+#editTaskButton {
+    border-radius: 5px;
+    background-color: rgb(59, 113, 230);
+    border: rgb(59, 113, 230) solid 2px;
+}
+
+#editTaskButton:hover {
+    background-color: #4991e9;
+    border-radius: 5px;
+    border: #2fabe7 solid 2px;
+    cursor: pointer;
+}
+
+#completeButton{
+    border-radius: 5px;
+    background-color: rgb(59, 113, 230);
+    border: rgb(59, 113, 230) solid 2px;
+}
+
+#completeButton:hover {
+    background-color: #4991e9;
+    border-radius: 5px;
+    border: #2fabe7 solid 2px;
+    cursor: pointer;
+}
+
+#editButton {
+    border-radius: 5px;
+    background-color: rgb(59, 113, 230);
+    border: rgb(59, 113, 230) solid 2px;
+}
+
+#editButton:hover {
+    background-color: #4991e9;
+    border-radius: 5px;
+    border: #2fabe7 solid 2px;
+    cursor: pointer;
+}
+
+#newTaskButton:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
 .btnDelete {
     background-color: rgb(211, 231, 246);
     color: #6db7f3;

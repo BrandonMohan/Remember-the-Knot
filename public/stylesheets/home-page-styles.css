@@ -121,3 +121,9 @@ a>#login-btn {
     width: 400px;
     height: 30px;
 }
+
+#aboutUs {
+    display: flex;
+    justify-content: space-evenly;
+    width: 20%
+}
