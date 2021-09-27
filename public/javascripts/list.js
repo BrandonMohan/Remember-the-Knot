@@ -45,11 +45,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     return (listcontainer.innerHTML = listHtml.join(''));
   };
   const renderTasks = (tasks) => {
+    const taskList = document.querySelector('.task_list');
+    const newTaskButton = document.querySelector('#newTaskButton');
     if (noList) {
-      const newTaskButton = document.querySelector('#newTaskButton');
+      taskList.innerHTML = ''
       newTaskButton.setAttribute('disabled', '');
     } else {
-      const taskList = document.querySelector('.task_list');
       let taskHtml = [];
       if (tasks.length) {
         for (let task of tasks) {
