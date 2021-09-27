@@ -41,14 +41,14 @@ body {
 
 .nav {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    column-gap: 150px;
+    /* column-gap: 150px;
     padding-left: 600px;
     padding-right: 25px;
     padding-top: 25px;
     padding-bottom: 25px;
-    font-size: 20px;
+    font-size: 20px; */
 }
 
 .nav>a {
@@ -62,6 +62,7 @@ a:hover {
 
 .nav {
     border-bottom: 1px solid #e4eef8;
+
 }
 
 h1 {
@@ -97,4 +98,43 @@ a>#login-btn {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+}
+
+.contributorContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.githubLinks {
+    padding-top: 2%;
+}
+
+#connect {
+    padding-right: 15px;
+}
+
+#Howard {
+    margin: auto;
+    padding-right: 10px;
+}
+
+#Ethan {
+    margin: auto;
+    padding-right: 10px;
+}
+
+#Brandon {
+    margin: auto;
+    padding-right: 10px;
+}
+
+#Kenny {
+    margin: auto;
+    padding-right: 10px;
+}
+
+#knotlogo{
+    position: relative;
+    height: 60px;
+    justify-content: flex-start;
 }
