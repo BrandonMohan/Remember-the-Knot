@@ -3,7 +3,10 @@ Are you a busy person who juggles and struggles with plans? Are you trying to ge
 
 If your answer is yes to any of these, then Remember the Knot is what you need!
 
-Remember the Knot is an application to have a digital copy of your to-do list that can be accessed from anywhere!
+Remember the Knot is an application to have a digital copy of your to-do/remember list that can be accessed from anywhere!
+
+#Live Server
+http://remember-the-knot.herokuapp.com
 
 # Development
 * Learn more about this project by visiting the wiki for Remember The Knot https://github.com/iethan-h/Remember-the-Knot/wiki
@@ -24,32 +27,25 @@ Remember the Knot is an application to have a digital copy of your to-do list th
 * Heroku
 * Git/Github
 
-# Features
+#Highlight Features
+* List Feature
+Fully DOM manipulated feature which allows the user to create and update lists without having to reload the browser each time. Without having to reload gives the website a feeling that is more of an application than being a site. This feature highlights our teams ability to manipulate the DOM to display data the users wants.
 
-* New account creation, log in/out and guest button
-   * Users can create an account, sign into an account, and log out of their account.
-   * Users can click the demo button to sign into the site
-   * Users cannot access the dashboard without signing in
-   
-* Tasks
-   * Users can create a task while logged in and on a list
-   * Users should be able to submit tasks with a name
-   * Users can edit their tasks
-   * Users can delete their tasks
+* Task Feature
+Along with a fully DOM manipulated list feature comes with a fully DOM manipulated task feature which allows users to pin tasks to new list without having to reload. 
+This feature shows that our team can build not just one DOM feature but two interconnecting DOM features and have the organization and communication to do so.
 
-* List
-    * Users can create a new list which will hold tasks
-    * Users can click a create new list button to open up a page to submit new list
-    * Users should be able to add/delete/modify list
+#Challenges
+1. Because this feature is fully DOM, a huge challenge when implementing the feature is efficent communication and organization of our code. A strong skill used to overcome this challenge is precision and apt variable and function naming which allowed the team to easily pick out code to work with and use. We truly felt a solid foundation 
+starts with a good naming convention for all variables and functions and efficiently communicating this convention to the team.
+ 
+2. The challenge with coding the task feature is the interaction it has with the list feature which would create plentiful of bugs. Many bug handling codes were pushed during the development of the task feature. Because of the code's strong naming and modular coding the team was able to problem solve each bug and pinpoint where in the code to fix it without breaking other features. This challenge was mainly overcome with the teams ability to problem solve and logically follow the code already put in front. 
 
-* List Summary, somewhere on list page or homepage displaying
-    * Users should be able to see total time for a list
-    * Users should be able to see how many task in the list
-    * Users should see how many task completed
-
-* Search
-    * Users should be able to search keywords through list and task that belong to them
-    * Users should be able to search results and render list of related search results.
+#Code Highlight
+The following code by itself is not impressive but displays the prowess of the teams naming and modular coding.
+The context for this code is to load a default list upon loading in or deleting a list the user is on. Each function used in this is also used in other functions
+that provide other functionalities such as adding new list or task.
+![code highlight](https://user-images.githubusercontent.com/83061284/134843425-50999834-3477-4bdb-b6f8-9cfb9bf40715.PNG)
 
 
 
