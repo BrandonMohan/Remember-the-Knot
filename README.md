@@ -35,13 +35,13 @@ Fully DOM manipulated feature which allows the user to create and update lists w
 Along with a fully DOM manipulated list feature comes with a fully DOM manipulated task feature which allows users to pin tasks to new list without having to reload. 
 This feature shows that our team can build not just one DOM feature but two interconnecting DOM features and have the organization and communication to do so.
 
-#Challenges
+# Challenges
 1. Because this feature is fully DOM, a huge challenge when implementing the feature is efficent communication and organization of our code. A strong skill used to overcome this challenge is precision and apt variable and function naming which allowed the team to easily pick out code to work with and use. We truly felt a solid foundation 
 starts with a good naming convention for all variables and functions and efficiently communicating this convention to the team.
  
 2. The challenge with coding the task feature is the interaction it has with the list feature which would create plentiful of bugs. Many bug handling codes were pushed during the development of the task feature. Because of the code's strong naming and modular coding the team was able to problem solve each bug and pinpoint where in the code to fix it without breaking other features. This challenge was mainly overcome with the teams ability to problem solve and logically follow the code already put in front. 
 
-#Code Highlight
+# Code Highlight
 The following code by itself is not impressive but displays the prowess of the teams naming and modular coding.
 The context for this code is to load a default list upon loading in or deleting a list the user is on. Each function used in this is also used in other functions
 that provide other functionalities such as adding new list or task.
