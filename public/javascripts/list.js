@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const list = await fetchSingleList(lastClickedListId)
     const listSumDiv = document.querySelector('#listSummary')
     const dateCreated = list.createdAt.slice(0, 10)
-    console.log(list.createdAt)
     if (noList) {
       listSumDiv.innerHTML = ''
     } else {
@@ -73,7 +72,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       newTaskButton.setAttribute('disabled', '');
     } else {
       let taskHtml = [];
-      console.log(tasks.length)
       if (tasks.length) {
         for (let task of tasks) {
           const { taskName, id } = task;
