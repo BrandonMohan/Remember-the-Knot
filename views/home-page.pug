@@ -3,11 +3,19 @@ extends home-page-layout.pug
 include utils.pug
 
 block content
+    script(src="/javascripts/homepage.js" type="module" defer)
+    div#greyOut.hidden
+        label(for="demoClick") Creating demo user
+        progress#demoClick
     div(class="container")
     div(id="top_div")
         div(class="nav")
+
             img#knotlogo(src='/stylesheets/knotlogo.png')
             a(href='/demo') Demo
+
+            a#demoButton(href='/demo') Demo
+
             a(href="/login") Log in
             a(href='/signup')
                 button(type="submit") Sign up for Free!
@@ -25,6 +33,7 @@ block content
             h3(id="mission" class="description") Our Mission
             hr
             h3(class="description") Remember The Knot is an application to replace the normal to-do list! Instead of wasting paper and having stacks of them, all of your to-do's are now all in one place!
+
             div.contributorContainer
                 h3(id="connect") Our Contributors:
                 div.githubLinks
@@ -32,3 +41,4 @@ block content
                     a#Ethan(href="https://github.com/iethan-h") Ethan Harwell
                     a#Brandon(href="https://github.com/BrandonMohan") Brandon Mohan
                     a#Kenny(href="https://github.com/Kennyg3") Kenny Guo
+

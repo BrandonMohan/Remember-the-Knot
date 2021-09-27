@@ -1,34 +1,36 @@
 body {
-  background-color: #e4eef8;
-  margin: 0px;
+    background-color: #e4eef8;
+    margin: 0px;
 }
+
 #header h1 {
-  margin: 0px;
+    margin: 0px;
 }
 
 .nav_bar {
-  display: flex;
-  justify-content: space-between;
-  padding: 4px;
-  align-items: center;
-  background-color: #0060bf;
+    display: flex;
+    justify-content: space-between;
+    padding: 4px;
+    align-items: center;
+    background-color: #0060bf;
 }
 
 .task_container {
-  margin-left: 220px;
+    margin-left: 220px;
 }
 
 #logout {
-  align-self: center;
-  position: relative;
-  top: 9px;
-  left: 1px;
+    align-self: center;
+    position: relative;
+    top: 9px;
+    left: 1px;
 }
 
 .searchBar {
-  width: 400px;
-  align-self: center;
+    width: 400px;
+    align-self: center;
 }
+
 
 /* .task_container {
   display: block;
@@ -37,165 +39,270 @@ body {
   width: 528px;
   background-color: white;
 } */
+
+
 /*under nav bar page*/
+
 .app {
-  width: 100%;
-  height: 100%;
-  background-color: rgb(211, 231, 246);
+    width: 100%;
+    height: 100%;
+    background-color: rgb(211, 231, 246);
 }
 
 .task_container {
-  width: 55%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  position: relative;
-  left: 7.5vh;
-  top: 0.5vh;
-}
-#newTaskButton {
-  border: 0.1px dotted black;
-  border-radius: 0.5rem;
-  text-decoration: none;
-}
-.taskButtons > input {
-  background-color: rgb(211, 231, 246);
-  border-style: none;
-  text-decoration: none;
-  padding-left: 3rem;
-  text-align: left;
-  font-size: large;
-  width: 100%;
-  height: 100%;
+    width: 55%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    left: 7.5vh;
+    top: 0.5vh;
 }
 
-.task_list > li {
-  border-bottom: 0.5px dotted black;
+#newTaskButton {
+    border: 0.1px dotted black;
+    border-radius: 0.5rem;
+    text-decoration: none;
 }
+
+.taskButtons>input {
+    background-color: rgb(211, 231, 246);
+    border-style: none;
+    text-decoration: none;
+    padding-left: 3rem;
+    text-align: left;
+    font-size: large;
+    width: 100%;
+    height: 100%;
+}
+
+.task_list>li {
+    border-bottom: 0.5px dotted black;
+}
+
+#listSummary {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+#divButton {
+    margin-top: 0;
+}
+
+#titleContainer {
+    margin-bottom: 0;
+    height: 50px;
+}
+
 
 /*Lists*/
+
 .list_container {
-  border-style: none;
-  width: fit-content;
-  font-size: larger;
-}
-.listButtons > input {
-  font-size: larger;
-}
-.list_div {
-  border-bottom: 0.5px solid black;
+    border-style: none;
+    width: fit-content;
+    font-size: larger;
 }
 
+.listButtons>input {
+    font-size: larger;
+}
+
+.list_div {
+    border-bottom: 0.5px solid black;
+}
+
+
 /* Hidden Edit forms*/
+
 .hidden {
-  display: none;
+    display: none;
 }
 
 .greyBackground {
-  position: absolute;
-  background-color: black;
-  width: 100%;
-  height: 100%;
-  opacity: 50%;
-  z-index: 1;
+    position: absolute;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    opacity: 50%;
+    z-index: 1;
 }
 
 .show {
-  display: inline-flex;
-  z-index: 2;
+    display: inline-flex;
+    z-index: 2;
 }
 
 #editListDiv {
-  position: absolute;
-  top: 40%;
-  left: 30%;
-  background-color: #e4eef8;
-  border: black solid 1px;
-  padding: 10px;
-  z-index: 2;
+    position: absolute;
+    top: 40%;
+    left: 30%;
+    background-color: #e4eef8;
+    border: black solid 1px;
+    padding: 10px;
+    z-index: 2;
 }
 
+
 /* button styling */
+
+.btn {
+    border-radius: 5px;
+    background-color: rgb(59, 113, 230);
+    border: rgb(59, 113, 230) solid 2px;
+}
+
+.btn:hover {
+    background-color: #4991e9;
+    border-radius: 5px;
+    border: #2fabe7 solid 2px;
+    cursor: pointer;
+}
+
+#editTaskButton {
+    border-radius: 5px;
+    background-color: rgb(59, 113, 230);
+    border: rgb(59, 113, 230) solid 2px;
+}
+
+#editTaskButton:hover {
+    background-color: #4991e9;
+    border-radius: 5px;
+    border: #2fabe7 solid 2px;
+    cursor: pointer;
+}
+
+#completeButton{
+    border-radius: 5px;
+    background-color: rgb(59, 113, 230);
+    border: rgb(59, 113, 230) solid 2px;
+}
+
+#completeButton:hover {
+    background-color: #4991e9;
+    border-radius: 5px;
+    border: #2fabe7 solid 2px;
+    cursor: pointer;
+}
+
+#editButton {
+    border-radius: 5px;
+    background-color: rgb(59, 113, 230);
+    border: rgb(59, 113, 230) solid 2px;
+}
+
+#editButton:hover {
+    background-color: #4991e9;
+    border-radius: 5px;
+    border: #2fabe7 solid 2px;
+    cursor: pointer;
+}
+
+#newTaskButton:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
 .btnDelete {
-  background-color: rgb(211, 231, 246);
-  color: #6db7f3;
-  border: none;
+    background-color: rgb(211, 231, 246);
+    color: #6db7f3;
+    border: none;
 }
+
 .btnDelete:hover {
-  color: #405dc5;
-  cursor: pointer;
+    color: #405dc5;
+    cursor: pointer;
 }
+
 #newListButton {
-  border-radius: 5px;
-  background-color: rgb(59, 113, 230);
-  border: rgb(59, 113, 230) solid 2px;
+    border-radius: 5px;
+    background-color: rgb(59, 113, 230);
+    border: rgb(59, 113, 230) solid 2px;
 }
+
 #newListButton:hover {
-  background-color: #4991e9;
-  border-radius: 5px;
-  border: #2fabe7 solid 2px;
-  cursor: pointer;
+    background-color: #4991e9;
+    border-radius: 5px;
+    border: #2fabe7 solid 2px;
+    cursor: pointer;
 }
+
 #titleListEdit {
-  border-radius: 5px;
-  background-color: rgb(59, 113, 230);
-  border: rgb(59, 113, 230) solid 2px;
+    border-radius: 5px;
+    background-color: rgb(59, 113, 230);
+    border: rgb(59, 113, 230) solid 2px;
 }
+
 #titleListEdit:hover {
-  background-color: #4991E9;
-  border-radius: 5px;
-  border: #2FABE7 solid 2px;
-  cursor: pointer;
+    background-color: #4991E9;
+    border-radius: 5px;
+    border: #2FABE7 solid 2px;
+    cursor: pointer;
 }
+
 #logout {
-  background-color: white;
-  border-radius: 5px;
-  border: #0060bf solid 3px;
+    background-color: white;
+    border-radius: 5px;
+    border: #0060bf solid 3px;
 }
+
 #logout:hover {
-  background-color: white;
-  border-radius: 5px;
-  border: #2FABE7 solid 3px;
-  cursor: pointer;
+    background-color: white;
+    border-radius: 5px;
+    border: #2FABE7 solid 3px;
+    cursor: pointer;
 }
 
 .listButtons {
-  display: flex;
-  width: 200px;
-  justify-content: center;
-  margin: 3px;
+    display: flex;
+    width: 200px;
+    justify-content: center;
+    margin: 3px;
 }
 
 #newListInput {
-  width: 175;
+    width: 200px;
 }
 
 .list_div:hover {
-  color: #4991e9;
-  cursor: pointer;
+    color: #4991e9;
+    cursor: pointer;
 }
+
 
 /* Heading Styles */
-#listOfListHeading {
-  font-size: large;
-  border-bottom: #6db7f3 solid 2px;
-  width: 100px;
-}
 
+#listOfListHeading {
+    font-size: large;
+    border-bottom: #6db7f3 solid 2px;
+    width: 100px;
+}
 
 #greetings {
-  color: white;
-  position: absolute;
-  left: 3%
-}
-.editForm {
-  display: none;
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  justify-content: center;
-  flex-direction: column;
-  left: 60%;
-  top: 25%;
+    color: white;
+    position: absolute;
+    left: 3%
 }
 
+.editForm {
+    display: none;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    left: 50%;
+    top: 25%;
+    padding-top: 200px;
+    margin: center;
+}
+
+#eTaskInput {
+    border-radius: 25px;
+    border: 2px solid black;
+    padding: 20px;
+    width: 200px;
+    height: 15px;
+}

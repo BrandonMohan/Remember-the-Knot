@@ -100,6 +100,7 @@ a>#login-btn {
     font-size: 16px;
 }
 
+
 .contributorContainer {
     display: flex;
     justify-content: center;
@@ -139,6 +140,7 @@ a>#login-btn {
     justify-content: flex-start;
 }
 
+
 .hidden {
     display: none;
 }
@@ -166,4 +168,6 @@ a>#login-btn {
     display: flex;
     justify-content: space-evenly;
     width: 20%
+
 }
+

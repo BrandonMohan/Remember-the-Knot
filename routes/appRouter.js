@@ -76,6 +76,18 @@ router.delete(
     }
   })
 );
+router.get(
+  '/lists/:id',
+  asyncHandler(async (req, res) => {
+    try {
+      const id = req.params.id;
+      const list = await db.List.findByPk(id);
+      res.json({ list })
+    } catch (err) {
+      console.log(err);
+    }
+  })
+);
 router.delete(
   '/task/:id/delete',
   asyncHandler(async (req, res) => {

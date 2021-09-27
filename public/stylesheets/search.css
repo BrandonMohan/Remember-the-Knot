@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #0060bf;
+    height: 150%;
+}
+
+button {
+    height: 50px;
+    width: 200px;
+    margin-bottom: 10px;
+    color: black;
+    font-family: sans-serif;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 25px;
+    margin-top: 10px;
+}
+
+.nav {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 30%;
+    background-color: white;
+}
