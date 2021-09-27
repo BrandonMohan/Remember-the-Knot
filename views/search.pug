@@ -5,14 +5,13 @@ html
       link(rel='stylesheet' href='/stylesheets/search.css')
   body
     block content
-    div(class="back-to-app")
+    div(class="nav")
         a(href="/app")
-                button(type="button") Back to Tasks
+            button(type="button") Back to Tasks
         div(class="container")
-        
-                h1(id="res") Results:
-                    h2
-                        ul
-                            each task in taskArr
-                                li= task.taskName
-
+            h1(id="res") Results:
+                h2
+                    ul
+                        each task in taskArr
+                            li= task.taskName
+    div(class="blue")
