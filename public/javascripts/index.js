@@ -44,7 +44,6 @@ document.addEventListener('click', function (event) {
         event.stopImmediatePropagation();
         const currentTask = document.querySelector(`.task${submitEdit.className}`);
         currentTask.innerHTML = `<li data-taskId="${submitEdit.className}" class="task_li task${submitEdit.className}">${editValue.value} <button id="editTaskButton" class="${submitEdit.className}" type="button">Edit</button></li> `;
-        // console.log(editValue.value, submitEdit.className);
         let result = await editTask(submitEdit.className, editValue.value);
         submitEdit.remove();
         submitComplete.remove();

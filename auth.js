@@ -7,7 +7,6 @@ const loginUser = (req, res, user) => {
 };
 
 const logoutUser = async (req, res) => {
-    // console.log('prior to logout' + req.session);
     await delete req.session.auth;
     res.redirect('/')
 };
@@ -23,7 +22,6 @@ const requireAuth = (req, res, next) => {
 const restoreUser = async (req, res, next) => {
     // Log the session object to the console
     // to assist with debugging.
-    console.log(req.session);
 
     if (req.session.auth) {
         const { userId } = req.session.auth;

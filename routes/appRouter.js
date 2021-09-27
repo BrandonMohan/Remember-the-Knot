@@ -130,8 +130,6 @@ router.post(
   asyncHandler(async (req, res) => {
     const { taskName } = req.body;
     const listId = req.params.id;
-    console.log(listId);
-    console.log(taskName);
     const task = await db.Task.create({
       taskName,
       listId,
@@ -156,7 +154,6 @@ router.get(
     const tasks = await db.Task.findAll({
       where: { listId: userListIds }
     });
-    console.log(tasks);
     let taskArr = [];
     for (let task of tasks) {
       if (task.taskName.includes(term)) taskArr.push(task);
@@ -171,7 +168,6 @@ router.put(
   asyncHandler(async (req, res) => {
     const id = req.params.id;
     const { editValue } = req.body;
-    console.log(id);
     // const tasks = await db.Task.findOne({
     //   where: { id: id }
     // });

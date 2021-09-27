@@ -117,21 +117,25 @@ a>#login-btn {
 #Howard {
     margin: auto;
     padding-right: 10px;
+    text-decoration: none;
 }
 
 #Ethan {
     margin: auto;
     padding-right: 10px;
+    text-decoration: none;
 }
 
 #Brandon {
     margin: auto;
     padding-right: 10px;
+    text-decoration: none;
 }
 
 #Kenny {
     margin: auto;
     padding-right: 10px;
+    text-decoration: none;
 }
 
 #knotlogo{
@@ -170,4 +174,3 @@ a>#login-btn {
     width: 20%
 
 }
-
